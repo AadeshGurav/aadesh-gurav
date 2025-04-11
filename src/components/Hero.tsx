@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
+import ThreeBackground from './ThreeBackground';
 
 const Hero = () => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +55,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden section-padding">
+      {/* Three.js Background */}
+      {!loading && <ThreeBackground />}
+      
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-radial from-neon-purple/5 to-transparent"></div>
       
