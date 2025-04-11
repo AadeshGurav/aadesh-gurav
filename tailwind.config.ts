@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,16 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				neon: {
+					purple: '#9b87f5',
+					blue: '#1EAEDB',
+					pink: '#D946EF',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,25 +66,57 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
+				'pulse-neon': {
+					'0%, 100%': { 
+						boxShadow: '0 0 10px 2px rgba(155, 135, 245, 0.7), 0 0 20px 4px rgba(155, 135, 245, 0.5)'
 					},
-					to: {
-						height: '0'
+					'50%': { 
+						boxShadow: '0 0 15px 3px rgba(155, 135, 245, 0.9), 0 0 30px 6px rgba(155, 135, 245, 0.7)'
 					}
+				},
+				'progress': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' }
+				},
+				'text-shimmer': {
+					'0%': { backgroundPosition: '-100%' },
+					'100%': { backgroundPosition: '200%' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'pulse-neon': 'pulse-neon 2s infinite',
+				'progress': 'progress 1.5s ease-out forwards',
+				'text-shimmer': 'text-shimmer 3s infinite'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'neon-glow': 'linear-gradient(90deg, #9b87f5, #D946EF, #1EAEDB, #9b87f5)',
+				'dark-gradient': 'linear-gradient(to bottom, #1A1F2C, #121420)',
+			},
+			typography: {
+				DEFAULT: {
+					css: {
+						maxWidth: '65ch',
+					},
+				},
+			},
+			boxShadow: {
+				'neon': '0 0 10px 2px rgba(155, 135, 245, 0.7), 0 0 20px 4px rgba(155, 135, 245, 0.5)',
+				'neon-hover': '0 0 15px 3px rgba(155, 135, 245, 0.9), 0 0 30px 6px rgba(155, 135, 245, 0.7)',
 			}
 		}
 	},
