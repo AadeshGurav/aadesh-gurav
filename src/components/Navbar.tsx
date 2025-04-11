@@ -24,7 +24,7 @@ const Navbar = () => {
     { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projekts', href: '#projects' },
-    { label: 'Skillxz', href: '#skills' },
+    { label: 'Skillz', href: '#skills' }, // Fixed spelling from Skillxz to Skillz
     { label: 'Contact', href: '#contact' }
   ];
 

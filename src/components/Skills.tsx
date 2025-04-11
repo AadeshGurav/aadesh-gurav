@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Skill {
   name: string;
@@ -46,11 +46,25 @@ const Skills = () => {
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
 
+  // Generate random animation delays for gradients
+  const [animationDelays, setAnimationDelays] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    // Create random animation delays for each skill
+    const delays: { [key: string]: string } = {};
+    skills.forEach((skill) => {
+      // Generate random delay between 0 and 2 seconds
+      const delay = Math.random() * 2;
+      delays[skill.name] = `-${delay}s`;
+    });
+    setAnimationDelays(delays);
+  }, []);
+
   return (
     <section id="skills" className="section-padding">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Technical <span className="neon-text">Skillxz</span>
+          Technical <span className="neon-text">Skillz</span>
         </h2>
         
         <div className="mb-12 custom-scrollbar overflow-x-auto">
@@ -81,7 +95,10 @@ const Skills = () => {
               <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
                 <div 
                   className="h-full rounded-full bg-gradient-to-r from-neon-purple to-neon-blue"
-                  style={{ width: `${skill.level}%` }}
+                  style={{ 
+                    width: `${skill.level}%`,
+                    animationDelay: animationDelays[skill.name] || '0s'
+                  }}
                 />
               </div>
             </div>
