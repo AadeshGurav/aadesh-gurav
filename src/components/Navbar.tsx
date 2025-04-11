@@ -19,6 +19,15 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Updated navigation items with the requested spelling changes
+  const navItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Projekts', href: '#projects' },
+    { label: 'Skillxz', href: '#skills' },
+    { label: 'Contact', href: '#contact' }
+  ];
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -26,13 +35,13 @@ const Navbar = () => {
         
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+          {navItems.map((item) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               className="text-gray-300 hover:text-white hover:text-neon-purple transition-colors duration-300"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
@@ -51,14 +60,14 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-md py-4 animate-fade-in">
           <div className="container mx-auto px-6 flex flex-col space-y-4">
-            {['Home', 'About', 'Projects', 'Skills', 'Contact'].map((item) => (
+            {navItems.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 className="text-gray-300 hover:text-white py-2 border-b border-gray-800"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

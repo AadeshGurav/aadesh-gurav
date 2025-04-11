@@ -52,7 +52,7 @@ const Contact = () => {
           
           <div className="mt-12 text-center">
             <p className="text-gray-400 mb-4">Based in:</p>
-            <p className="text-xl font-medium">Pune, Maharashtra, India</p>
+            <p className="text-xl font-medium">Ratnagiri, Maharashtra, India</p>
           </div>
         </div>
         

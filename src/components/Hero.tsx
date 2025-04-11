@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 
@@ -7,13 +6,13 @@ const Hero = () => {
   const [loadingText, setLoadingText] = useState('Loading creative thoughts...');
   const [typedText, setTypedText] = useState('');
   
-  const fullText = "Coding with a dash of humor and a sprinkle of Rust";
+  const fullText = "High on Python, fueled by caffeine, and allergic to bugs";
   
   useEffect(() => {
-    // Simulate loading
+    // Simulate loading - extended duration
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3500); // Increased from 2000 to 3500ms
     
     // Loading text animation
     let count = 0;

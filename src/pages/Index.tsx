@@ -12,23 +12,33 @@ const Index = () => {
     // Update document title
     document.title = "Aadesh Gurav | Software Developer";
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href') as string);
-        if (target) {
+    // Smooth scrolling for anchor links with improved handling
+    const handleAnchorClick = (e: Event) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLAnchorElement;
+      const targetId = target.getAttribute('href');
+      
+      if (targetId && targetId.startsWith('#')) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
           window.scrollTo({
-            top: target.getBoundingClientRect().top + window.scrollY - 100,
+            top: targetElement.getBoundingClientRect().top + window.scrollY - 80,
             behavior: 'smooth'
           });
+          
+          // Update URL without refresh
+          history.pushState(null, '', targetId);
         }
-      });
+      }
+    };
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick);
     });
     
     return () => {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', function() {});
+        anchor.removeEventListener('click', handleAnchorClick);
       });
     };
   }, []);

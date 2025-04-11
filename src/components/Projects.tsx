@@ -18,18 +18,6 @@ const Projects = () => {
       icon: <Database className="h-8 w-8 text-neon-purple" />
     },
     {
-      id: 'portfolio',
-      title: 'Personal Portfolio',
-      description: 'Previous version of my portfolio website hosted on GitHub Pages.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
-      links: [
-        { icon: <Github className="h-5 w-5" />, url: 'https://github.com/AadeshGurav/Aadesh9985.github.io', label: 'View on GitHub' },
-        { icon: <ExternalLink className="h-5 w-5" />, url: 'https://aadeshgurav.github.io/Aadesh9985.github.io/', label: 'Live Site' }
-      ],
-      icon: <Globe className="h-8 w-8 text-neon-blue" />
-    },
-    {
       id: 'bpmn',
       title: 'Enterprise BPMN Automation Tool',
       description: 'Designed and implemented a Business Process Model and Notation automation tool for streamlining enterprise workflows.',
@@ -70,7 +58,7 @@ const Projects = () => {
     <section id="projects" className="section-padding bg-black/30">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="neon-text">Projects</span>
+          My <span className="neon-text">Projekts</span>
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

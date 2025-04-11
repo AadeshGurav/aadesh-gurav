@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 interface Skill {
@@ -31,20 +32,6 @@ const Skills = () => {
     { name: 'Kubernetes', level: 70, category: 'devops' },
     { name: 'AWS', level: 65, category: 'devops' },
     { name: 'Firebase', level: 70, category: 'devops' },
-    
-    // Testing & Code Quality
-    { name: 'Flake8', level: 80, category: 'testing' },
-    { name: 'Jest', level: 75, category: 'testing' },
-    { name: 'Selenium', level: 65, category: 'testing' },
-    
-    // Version Control
-    { name: 'Git', level: 90, category: 'version-control' },
-    { name: 'GitHub', level: 90, category: 'version-control' },
-    
-    // Other Tools & Frameworks
-    { name: 'Express.js', level: 80, category: 'other' },
-    { name: 'GraphQL', level: 75, category: 'other' },
-    { name: 'RESTful API', level: 85, category: 'other' }
   ];
   
   const categories = [
@@ -53,9 +40,6 @@ const Skills = () => {
     { id: 'web', name: 'Web Technologies' },
     { id: 'databases', name: 'Databases' },
     { id: 'devops', name: 'DevOps & Cloud' },
-    { id: 'testing', name: 'Testing & Quality' },
-    { id: 'version-control', name: 'Version Control' },
-    { id: 'other', name: 'Other Tools & Frameworks' }
   ];
   
   const filteredSkills = activeCategory === 'all' 
@@ -66,10 +50,10 @@ const Skills = () => {
     <section id="skills" className="section-padding">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          Technical <span className="neon-text">Skills</span>
+          Technical <span className="neon-text">Skillxz</span>
         </h2>
         
-        <div className="mb-12 overflow-x-auto">
+        <div className="mb-12 custom-scrollbar overflow-x-auto">
           <div className="flex space-x-2 md:space-x-4 min-w-max">
             {categories.map(category => (
               <button
