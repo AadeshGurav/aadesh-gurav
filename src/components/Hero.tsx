@@ -56,7 +56,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden section-padding">
       {/* Three.js Background */}
-      {!loading && <ThreeBackground />}
+      <ThreeBackground />
       
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-radial from-neon-purple/5 to-transparent"></div>

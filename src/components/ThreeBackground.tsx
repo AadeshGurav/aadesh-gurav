@@ -22,10 +22,10 @@ const generatePoints = (count: number, radius: number) => {
     positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta);
     positions[i3 + 2] = r * Math.cos(phi);
     
-    // Random color with neon theme
-    colors[i3] = 0.6 + Math.random() * 0.4; // R
-    colors[i3 + 1] = 0.4 + Math.random() * 0.6; // G
-    colors[i3 + 2] = 0.8 + Math.random() * 0.2; // B
+    // Random color with neon theme - more subtle colors
+    colors[i3] = 0.4 + Math.random() * 0.3; // R
+    colors[i3 + 1] = 0.3 + Math.random() * 0.4; // G
+    colors[i3 + 2] = 0.6 + Math.random() * 0.2; // B
   }
   
   return { positions, colors };
@@ -40,16 +40,16 @@ function PointCloud({ count = 4000, radius = 10, mousePosition }: { count: numbe
   useFrame((state) => {
     if (!pointsRef.current) return;
     
-    // Rotate the points based on time
-    pointsRef.current.rotation.x = state.clock.getElapsedTime() * 0.05;
-    pointsRef.current.rotation.y = state.clock.getElapsedTime() * 0.03;
+    // Rotate the points based on time - slow it down for subtlety
+    pointsRef.current.rotation.x = state.clock.getElapsedTime() * 0.03;
+    pointsRef.current.rotation.y = state.clock.getElapsedTime() * 0.02;
     
-    // Respond to mouse position
+    // Respond to mouse position - make movement more subtle
     const targetX = (mousePosition.x / size.width) * 2 - 1;
     const targetY = -(mousePosition.y / size.height) * 2 + 1;
     
-    pointsRef.current.rotation.x += (targetY * 0.1 - pointsRef.current.rotation.x) * 0.02;
-    pointsRef.current.rotation.y += (targetX * 0.1 - pointsRef.current.rotation.y) * 0.02;
+    pointsRef.current.rotation.x += (targetY * 0.05 - pointsRef.current.rotation.x) * 0.01;
+    pointsRef.current.rotation.y += (targetX * 0.05 - pointsRef.current.rotation.y) * 0.01;
   });
   
   return (
@@ -57,10 +57,11 @@ function PointCloud({ count = 4000, radius = 10, mousePosition }: { count: numbe
       <PointMaterial
         transparent
         vertexColors
-        size={0.15}
+        size={0.12}
         sizeAttenuation={true}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
+        opacity={0.6}
       />
       <bufferGeometry>
         <bufferAttribute
@@ -96,10 +97,10 @@ const ThreeBackground = () => {
   }, []);
   
   return (
-    <div className="absolute inset-0 z-0 opacity-70">
+    <div className="fixed inset-0 z-[-1] opacity-40 pointer-events-none">
       <Canvas camera={{ position: [0, 0, 15], fov: 60 }}>
-        <ambientLight intensity={0.5} />
-        <PointCloud count={4000} radius={10} mousePosition={mousePosition} />
+        <ambientLight intensity={0.3} />
+        <PointCloud count={6000} radius={12} mousePosition={mousePosition} />
       </Canvas>
     </div>
   );
