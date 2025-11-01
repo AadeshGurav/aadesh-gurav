@@ -57,11 +57,11 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding bg-black/30">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center">
           My <span className="neon-text">Projekts</span>
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project) => (
             <div 
               key={project.id}
@@ -69,21 +69,21 @@ const Projects = () => {
               onMouseEnter={() => handleTabHover(project.id)}
               onMouseLeave={handleTabLeave}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 <img 
                   src={project.image} 
                   alt={project.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <div className="absolute top-4 left-4 p-2 glass-card border border-white/10">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 p-2 glass-card border border-white/10">
                   {project.icon}
                 </div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-sm sm:text-base text-gray-400 mb-4">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, index) => (

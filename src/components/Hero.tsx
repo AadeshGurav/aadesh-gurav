@@ -71,21 +71,21 @@ const Hero = () => {
             </div>
           </div>
         ) : (
-          <div className="text-center animate-fade-in">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+          <div className="text-center animate-fade-in px-2">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
               Hi, I'm <span className="neon-text">Aadesh Gurav</span>
             </h1>
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-10 h-16">{typedText}</p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <p className="text-base sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 sm:mb-10 min-h-[60px] sm:min-h-[80px]">{typedText}</p>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a 
                 href="#projects" 
-                className="neon-button group"
+                className="neon-button group text-sm sm:text-base"
               >
                 View My Work
               </a>
               <a 
                 href="#contact" 
-                className="px-6 py-2 bg-transparent text-white border border-white/20 rounded-md hover:border-white/50 transition-all duration-300"
+                className="px-6 py-2 bg-transparent text-white border border-white/20 rounded-md hover:border-white/50 transition-all duration-300 text-sm sm:text-base"
               >
                 Contact Me
               </a>
@@ -95,10 +95,10 @@ const Hero = () => {
       </div>
       
       {/* Scroll down indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
         <a href="#about" className="text-white/70 hover:text-white flex flex-col items-center">
-          <span className="mb-2 text-sm">Scroll Down</span>
-          <ArrowDown size={20} />
+          <span className="mb-2 text-xs sm:text-sm">Scroll Down</span>
+          <ArrowDown size={16} className="sm:w-5 sm:h-5" />
         </a>
       </div>
     </section>

@@ -29,17 +29,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md py-3' : 'bg-transparent py-5'}`}>
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold neon-text">Aadesh Gurav</a>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md py-2 sm:py-3' : 'bg-transparent py-3 sm:py-5'}`}>
+      <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
+        <a href="#home" className="text-lg sm:text-xl md:text-2xl font-bold neon-text">Aadesh Gurav</a>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-6 lg:space-x-8">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="text-gray-300 hover:text-white hover:text-neon-purple transition-colors duration-300"
+              className="text-sm lg:text-base text-gray-300 hover:text-white hover:text-neon-purple transition-colors duration-300"
             >
               {item.label}
             </a>

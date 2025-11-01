@@ -1,7 +1,6 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { useThree } from '@react-three/fiber';
 
@@ -32,7 +31,7 @@ const generatePoints = (count: number, radius: number) => {
 };
 
 function PointCloud({ count = 4000, radius = 10, mousePosition }: { count: number; radius: number; mousePosition: { x: number; y: number } }) {
-  const pointsRef = useRef<THREE.Points>(null);
+  const pointsRef = useRef<THREE.Points>(null!);
   const { positions, colors } = generatePoints(count, radius);
   
   const { size } = useThree();
@@ -52,33 +51,21 @@ function PointCloud({ count = 4000, radius = 10, mousePosition }: { count: numbe
     pointsRef.current.rotation.y += (targetX * 0.05 - pointsRef.current.rotation.y) * 0.01;
   });
   
-  return (
-    <Points ref={pointsRef} limit={10000}>
-      <PointMaterial
-        transparent
-        vertexColors
-        size={0.12}
-        sizeAttenuation={true}
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        opacity={0.6}
-      />
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={colors.length / 3}
-          array={colors}
-          itemSize={3}
-        />
-      </bufferGeometry>
-    </Points>
-  );
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  
+  const material = new THREE.PointsMaterial({
+    transparent: true,
+    vertexColors: true,
+    size: 0.12,
+    sizeAttenuation: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    opacity: 0.6,
+  });
+  
+  return <points ref={pointsRef} geometry={geometry} material={material} />;
 }
 
 const ThreeBackground = () => {

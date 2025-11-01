@@ -63,17 +63,17 @@ const Skills = () => {
   return (
     <section id="skills" className="section-padding">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12 text-center">
           Technical <span className="neon-text">Skillz</span>
         </h2>
         
-        <div className="mb-12 custom-scrollbar overflow-x-auto">
-          <div className="flex space-x-2 md:space-x-4 min-w-max">
+        <div className="mb-8 sm:mb-12 custom-scrollbar overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex space-x-2 md:space-x-4 min-w-max pb-2">
             {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-4 py-2 rounded-full text-sm md:text-base transition-all duration-300 
+                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm md:text-base transition-all duration-300 whitespace-nowrap
                   ${activeCategory === category.id 
                     ? 'bg-neon-purple/20 text-white border border-neon-purple shadow-neon' 
                     : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-transparent'
@@ -85,12 +85,12 @@ const Skills = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           {filteredSkills.map((skill, index) => (
-            <div key={index} className="glass-card p-6 group hover:shadow-neon transition-all duration-300">
-              <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-medium">{skill.name}</h3>
-                <span className="text-sm text-gray-400">{skill.level}%</span>
+            <div key={index} className="glass-card p-4 sm:p-6 group hover:shadow-neon transition-all duration-300">
+              <div className="flex justify-between items-center mb-2 sm:mb-3">
+                <h3 className="text-base sm:text-lg font-medium">{skill.name}</h3>
+                <span className="text-xs sm:text-sm text-gray-400">{skill.level}%</span>
               </div>
               <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
                 <div 
@@ -105,11 +105,11 @@ const Skills = () => {
           ))}
         </div>
         
-        <div className="mt-16 p-8 glass-card text-center border border-neon-purple/20 max-w-3xl mx-auto">
-          <p className="text-lg text-gray-300">
+        <div className="mt-12 sm:mt-16 p-4 sm:p-8 glass-card text-center border border-neon-purple/20 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300">
             "I strongly believe that any developer who claims to know everything about a language is either lying or hasn't used it in a real project."
           </p>
-          <p className="mt-4 text-sm text-neon-purple">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-neon-purple">
             That's why I'm always learning and improving my skills
           </p>
         </div>
