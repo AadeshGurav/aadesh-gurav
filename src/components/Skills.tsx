@@ -67,16 +67,16 @@ const Skills = () => {
           Technical <span className="neon-text">Skillz</span>
         </h2>
         
-        <div className="mb-8 sm:mb-12 custom-scrollbar overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="mb-8 sm:mb-12 custom-scrollbar overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 relative z-20">
           <div className="flex space-x-2 md:space-x-4 min-w-max pb-2">
             {categories.map(category => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm md:text-base transition-all duration-300 whitespace-nowrap
+                className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm md:text-base transition-all duration-300 whitespace-nowrap relative z-20
                   ${activeCategory === category.id 
-                    ? 'bg-neon-purple/20 text-white border border-neon-purple shadow-neon' 
-                    : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-transparent'
+                    ? 'bg-neon-purple/30 text-white border-2 border-neon-purple shadow-neon' 
+                    : 'bg-white/5 text-gray-300 hover:bg-white/10 border border-white/10'
                   }`}
               >
                 {category.name}

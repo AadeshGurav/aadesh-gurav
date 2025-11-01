@@ -95,7 +95,7 @@ const Hero = () => {
       </div>
       
       {/* Scroll down indicator */}
-      <div className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-12 sm:bottom-16 md:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <a href="#about" className="text-white/70 hover:text-white flex flex-col items-center">
           <span className="mb-2 text-xs sm:text-sm">Scroll Down</span>
           <ArrowDown size={16} className="sm:w-5 sm:h-5" />
