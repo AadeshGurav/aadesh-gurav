@@ -63,9 +63,9 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="section-padding bg-[hsl(var(--background))]">
+    <section id="projects" className="section-padding bg-[hsl(var(--cream))] md:bg-[hsl(var(--background))]">
       <div className="container mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-center">
+        <h2 className="text-heading mb-12 sm:mb-16 text-center text-[hsl(var(--charcoal))] md:text-white">
           Scrolls of <span className="text-[hsl(var(--blood-red))]">Accomplishment</span>
         </h2>
         
@@ -84,13 +84,13 @@ const Projects = () => {
                     <IconComponent className="w-6 h-6 text-[hsl(var(--blood-red))]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-3 group-hover:text-[hsl(var(--blood-red))] transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 text-[hsl(var(--charcoal))] md:text-white group-hover:text-[hsl(var(--blood-red))] transition-colors">
                       {project.title}
                     </h3>
                   </div>
                 </div>
 
-                <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed">
+                <p className="text-body text-[hsl(var(--charcoal))] md:text-gray-300 mb-6 leading-relaxed">
                   {project.description}
                 </p>
 
@@ -98,7 +98,7 @@ const Projects = () => {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-white/5 border border-white/10 rounded-sm text-xs sm:text-sm text-gray-300"
+                      className="px-3 py-1 bg-[hsl(var(--blood-red))]/10 border border-[hsl(var(--blood-red))]/20 rounded-sm text-xs sm:text-sm text-[hsl(var(--charcoal))] md:text-gray-300"
                     >
                       {tech}
                     </span>
@@ -109,7 +109,7 @@ const Projects = () => {
                   {project.links.github && (
                     <a
                       href={project.links.github}
-                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-[hsl(var(--blood-red))] transition-colors"
+                      className="flex items-center gap-2 text-sm text-[hsl(var(--charcoal))] md:text-gray-400 hover:text-[hsl(var(--blood-red))] transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -120,7 +120,7 @@ const Projects = () => {
                   {project.links.live && (
                     <a
                       href={project.links.live}
-                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-[hsl(var(--blood-red))] transition-colors"
+                      className="flex items-center gap-2 text-sm text-[hsl(var(--charcoal))] md:text-gray-400 hover:text-[hsl(var(--blood-red))] transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
