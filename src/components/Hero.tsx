@@ -46,23 +46,35 @@ const Hero = () => {
       </div>
       
       {/* Hero Content - Mobile First */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-4 py-16 md:py-0 text-center">
-        <div className="max-w-5xl mx-auto space-y-6 md:space-y-8">
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 py-16 md:py-0 text-center min-h-screen md:min-h-0">
+        <div className="max-w-5xl mx-auto space-y-6 md:space-y-8 pb-8 md:pb-0">
           {/* Headline - Dual-layer clipping technique */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight md:leading-tight">
-            <span className="block mb-2 md:mb-0">
+            {/* Mobile: Single white layer only */}
+            <span className="block md:hidden text-white mb-2">
+              I am Aadesh Gurav,
+            </span>
+            <span className="block md:hidden text-white mb-2">
+              a Software Engineer
+            </span>
+            <span className="block md:hidden text-white">
+              forging robust systems.
+            </span>
+            
+            {/* Desktop: Dual-layer clipping */}
+            <span className="hidden md:block mb-2 md:mb-0">
               <span className="hero-text-layer-container">
                 <span className="hero-text-white-layer">I am Aadesh Gurav,</span>
                 <span className="hero-text-charcoal-layer">I am Aadesh Gurav,</span>
               </span>
             </span>
-            <span className="block mb-2 md:mb-0">
+            <span className="hidden md:block mb-2 md:mb-0">
               <span className="hero-text-layer-container">
                 <span className="hero-text-white-layer">a Software Engineer</span>
                 <span className="hero-text-charcoal-layer">a Software Engineer</span>
               </span>
             </span>
-            <span className="block">
+            <span className="hidden md:block">
               <span className="hero-text-layer-container">
                 <span className="hero-text-white-layer">forging robust systems.</span>
                 <span className="hero-text-charcoal-layer">forging robust systems.</span>
@@ -72,15 +84,26 @@ const Hero = () => {
           
           {/* Sub-headline - Dual-layer clipping technique */}
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-4 max-w-4xl mx-auto">
-            <span className="hero-sub-layer-container">
-              <span className="hero-sub-white-layer">
-                With Python as my blade and the Cloud as my domain,
-              </span>
-              <span className="hero-sub-charcoal-layer">
-                With Python as my blade and the Cloud as my domain,
+            {/* Mobile: Single charcoal layer only */}
+            <span className="block md:hidden text-[hsl(var(--charcoal))]">
+              With Python as my blade and the Cloud as my domain,
+            </span>
+            <span className="block md:hidden text-[hsl(var(--charcoal))] mt-2">
+              I craft solutions from concept to code.
+            </span>
+            
+            {/* Desktop: Dual-layer clipping */}
+            <span className="hidden md:inline">
+              <span className="hero-sub-layer-container">
+                <span className="hero-sub-white-layer">
+                  With Python as my blade and the Cloud as my domain,
+                </span>
+                <span className="hero-sub-charcoal-layer">
+                  With Python as my blade and the Cloud as my domain,
+                </span>
               </span>
             </span>
-            <span className="block mt-2">
+            <span className="hidden md:block mt-2">
               <span className="hero-sub-layer-container">
                 <span className="hero-sub-white-layer">
                   I craft solutions from concept to code.

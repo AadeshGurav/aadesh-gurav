@@ -275,6 +275,14 @@
     }
   }
   
+  /* Mobile: White layer shows full text (red background top section) */
+  @media (max-width: 767px) {
+    .hero-text-white-layer {
+      clip-path: none;
+      -webkit-clip-path: none;
+    }
+  }
+  
   /* Top layer: Charcoal text clipped to cream background (desktop left side) */
   .hero-text-charcoal-layer {
     color: hsl(var(--charcoal));
@@ -294,19 +302,10 @@
     }
   }
   
-  /* Mobile: White layer clipped to top 50% (red background) */
-  @media (max-width: 767px) {
-    .hero-text-white-layer {
-      clip-path: inset(0 0 50% 0);
-      -webkit-clip-path: inset(0 0 50% 0);
-    }
-  }
-  
-  /* Mobile: Charcoal layer clipped to bottom 50% (cream background) */
+  /* Mobile: Hide charcoal layer completely (headline is in red section) */
   @media (max-width: 767px) {
     .hero-text-charcoal-layer {
-      clip-path: inset(50% 0 0 0);
-      -webkit-clip-path: inset(50% 0 0 0);
+      display: none;
     }
   }
   
@@ -330,6 +329,13 @@
     }
   }
   
+  /* Mobile: Hide white layer (sub-headline is in cream section) */
+  @media (max-width: 767px) {
+    .hero-sub-white-layer {
+      display: none;
+    }
+  }
+  
   .hero-sub-charcoal-layer {
     color: hsl(var(--charcoal));
     position: absolute;
@@ -348,17 +354,13 @@
     }
   }
   
-  @media (max-width: 767px) {
-    .hero-sub-white-layer {
-      clip-path: inset(0 0 50% 0);
-      -webkit-clip-path: inset(0 0 50% 0);
-    }
-  }
-  
+  /* Mobile: Show charcoal layer full (sub-headline is in cream section) */
   @media (max-width: 767px) {
     .hero-sub-charcoal-layer {
-      clip-path: inset(50% 0 0 0);
-      -webkit-clip-path: inset(50% 0 0 0);
+      position: relative;
+      clip-path: none;
+      -webkit-clip-path: none;
+      display: inline-block;
     }
   }
 }
