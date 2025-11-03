@@ -25,6 +25,11 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
     --radius: 0.75rem;
+    
+    /* New Design System Colors */
+    --cream: 45 30% 92%;
+    --blood-red: 0 70% 45%;
+    --charcoal: 220 13% 13%;
   }
 
   html {

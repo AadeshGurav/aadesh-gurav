@@ -58,6 +58,9 @@ export default {
 					blue: '#1EAEDB',
 					pink: '#D946EF',
 				},
+				cream: 'hsl(var(--cream))',
+				'blood-red': 'hsl(var(--blood-red))',
+				charcoal: 'hsl(var(--charcoal))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
