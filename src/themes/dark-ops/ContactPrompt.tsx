@@ -19,11 +19,13 @@ export default function ContactPrompt({ contact }: { contact: ContactInfo }) {
               href={social.href}
               target={social.href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="press flex items-center gap-2"
+              className="press flex min-w-0 items-center gap-2"
               style={{ color: "var(--do-text)" }}
             >
-              {Icon && <Icon className="h-4 w-4" aria-hidden="true" style={{ color: "var(--do-accent)" }} />}
-              {social.label}: {social.href.replace("mailto:", "")}
+              {Icon && <Icon className="h-4 w-4 flex-shrink-0" aria-hidden="true" style={{ color: "var(--do-accent)" }} />}
+              <span className="min-w-0 break-all">
+                {social.label}: {social.href.replace("mailto:", "")}
+              </span>
             </a>
           );
         })}
