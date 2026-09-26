@@ -46,3 +46,8 @@ JS/CSS of whichever theme they got, not all 8.
 
 Static build (`npm run build` → `dist/`), deployed on Render's static site tier,
 served at `aadeshgurav.online`.
+
+- **Publish directory:** `dist`
+- **Build command:** `npm run build`
+- Add a rewrite rule `/* → /index.html` (client-side routing via React Router —
+  without this, refreshing any non-root URL 404s).

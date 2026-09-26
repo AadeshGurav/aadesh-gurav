@@ -1,0 +1,39 @@
+[data-theme="bento"] {
+  --bt-bg: oklch(0.96 0.005 95);
+  --bt-tile: oklch(0.99 0.003 95);
+  --bt-border: oklch(0.88 0.005 95);
+  --bt-text: oklch(0.18 0.005 95);
+  --bt-muted: oklch(0.5 0.01 95);
+  --bt-accent: oklch(0.68 0.15 55);
+}
+
+[data-theme="bento"] body {
+  background: var(--bt-bg);
+  color: var(--bt-text);
+}
+
+[data-theme="bento"] a:focus-visible,
+[data-theme="bento"] button:focus-visible {
+  outline: 2px solid var(--bt-accent);
+  outline-offset: 2px;
+}
+
+.bt-tile {
+  background: var(--bt-tile);
+  border: 1px solid var(--bt-border);
+  border-radius: 16px;
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bt-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px oklch(0 0 0 / 0.06);
+  }
+}
+
+[data-theme="bento"] .theme-switcher-trigger {
+  background: var(--bt-tile);
+  color: var(--bt-accent);
+  border: 1px solid var(--bt-border);
+}
