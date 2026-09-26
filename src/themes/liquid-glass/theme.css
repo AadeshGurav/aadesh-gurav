@@ -93,19 +93,20 @@
  * blur isn't recomputed against scroll on every frame. */
 .al-tabbar {
   position: fixed;
-  left: 50%;
+  left: 12px;
   bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
-  /* True-centered, the capsule's right edge sits within ~7px of the global
-     ThemeSwitcher button (bottom-right, every theme) at narrow widths —
-     confirmed merging on real iPhone Safari. Biased left below sm: for
-     clearance; centered again at sm:+ where there's room either way. */
-  transform: translateX(calc(-50% - 28px));
+  /* Left-anchored (not centered) below sm: — a centered capsule's right
+     edge lands within a few px of the global ThemeSwitcher button
+     (bottom-right, every theme) at narrow widths regardless of offset
+     tuning, confirmed overlapping on real iPhone Safari at both 320px
+     and 375px. Anchoring left guarantees clearance at any width; centered
+     again at sm:+ where there's room on both sides either way. */
   will-change: transform;
   z-index: 40;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px;
+  gap: 3px;
+  padding: 6px;
   width: fit-content;
   background: var(--al-glass-heavy);
   border: 1px solid oklch(0 0 0 / 0.06);
@@ -143,7 +144,10 @@
 
 @media (min-width: 640px) {
   .al-tabbar {
+    left: 50%;
     transform: translateX(-50%);
+    gap: 6px;
+    padding: 8px;
   }
 }
 
