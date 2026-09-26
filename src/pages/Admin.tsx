@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
 import { profile } from "@/content/profile";
 import { skills } from "@/content/skills";
 import { allProjects } from "@/content";
@@ -84,6 +86,8 @@ export default function Admin() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
+      <Toaster />
+      <Sonner />
       <h1 className="mb-1 text-2xl font-semibold">Site admin</h1>
       <p className="mb-6 text-sm text-muted-foreground">
         Edits here don't go live by themselves — each tab generates a content file for you to paste
