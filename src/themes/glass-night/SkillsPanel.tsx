@@ -3,7 +3,7 @@ import GlassPanel from "./GlassPanel";
 
 export default function SkillsPanel({ skills }: { skills: SkillGroup[] }) {
   return (
-    <section id="skills" className="px-4 py-10 sm:px-6 lg:px-0">
+    <section id="skills">
       <h2 className="mb-4 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--gn-accent)" }}>
         Toolkit
       </h2>

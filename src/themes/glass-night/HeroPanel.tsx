@@ -8,14 +8,10 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-/**
- * Identity + nav. A normal panel at the top on mobile (the hero); becomes a
- * sticky left column at lg+ so the aurora-lit page uses its full width
- * intentionally instead of one centered glass strip.
- */
-export default function Sidebar({ profile }: { profile: Profile }) {
+/** Identity + nav. One bento cell among many now, not a sticky sidebar. */
+export default function HeroPanel({ profile }: { profile: Profile }) {
   return (
-    <div id="home" className="gn-sidebar px-4 py-6 sm:px-6 lg:px-0 lg:py-16">
+    <div id="home">
       <GlassPanel>
         <p className="mb-3 text-sm font-medium" style={{ color: "var(--gn-accent)" }}>
           Now building
@@ -31,17 +27,17 @@ export default function Sidebar({ profile }: { profile: Profile }) {
         </p>
         <a
           href="#work"
-          className="press mt-6 inline-block rounded-full px-5 py-2.5 text-sm font-medium"
+          className="gn-hover-lift press mt-6 inline-block rounded-full px-5 py-2.5 text-sm font-medium"
           style={{ background: "var(--gn-accent)", color: "var(--gn-bg)" }}
         >
           See what's deployed
         </a>
-        <nav className="mt-8 flex flex-wrap gap-x-4 gap-y-1 lg:flex-col lg:gap-1">
+        <nav className="mt-8 flex flex-wrap gap-x-4 gap-y-1">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="press rounded-lg lg:px-2 lg:py-2 text-sm font-medium"
+              className="gn-hover-lift press rounded-lg px-2 py-2 text-sm font-medium"
               style={{ color: "var(--gn-muted)" }}
             >
               {link.label}
