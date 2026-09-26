@@ -4,8 +4,8 @@
   --fm-border: oklch(0.9 0.01 250);
   --fm-ink: oklch(0.25 0.02 250);
   --fm-muted: oklch(0.52 0.02 250);
-  --fm-accent: oklch(0.58 0.17 250);
-  --fm-accent-active: oklch(0.48 0.17 250);
+  --fm-accent: oklch(0.53 0.17 250);
+  --fm-accent-active: oklch(0.43 0.17 250);
   --fm-on-accent: oklch(0.99 0 0);
 }
 

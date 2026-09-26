@@ -4,7 +4,7 @@
   --bt-border: oklch(0.88 0.005 95);
   --bt-text: oklch(0.18 0.005 95);
   --bt-muted: oklch(0.5 0.01 95);
-  --bt-accent: oklch(0.68 0.15 55);
+  --bt-accent: oklch(0.53 0.15 55);
 }
 
 [data-theme="bento"] body {

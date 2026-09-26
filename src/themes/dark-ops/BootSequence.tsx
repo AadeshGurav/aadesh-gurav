@@ -77,9 +77,9 @@ export default function BootSequence({ profile }: { profile: Profile }) {
       {done && (
         <div className="mt-4 flex flex-col gap-1 text-base">
           <p style={{ color: "var(--do-accent)" }}>$ whoami</p>
-          <p className="pl-4" style={{ color: "var(--do-text)" }}>
+          <h1 className="pl-4 text-base font-normal" style={{ color: "var(--do-text)" }}>
             {profile.name} — {profile.role}
-          </p>
+          </h1>
           <p style={{ color: "var(--do-accent)" }}>$ cat tagline.txt</p>
           <p className="pl-4" style={{ color: "var(--do-text)" }}>
             {profile.tagline}

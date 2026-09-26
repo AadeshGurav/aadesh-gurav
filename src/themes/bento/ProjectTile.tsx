@@ -32,9 +32,9 @@ export default function ProjectTile({ project }: { project: Project }) {
   return (
     <StatTile>
       <div className="flex items-center gap-2">
-        <h3 className="text-base font-semibold" style={{ color: "var(--bt-text)" }}>
+        <h2 className="text-base font-semibold" style={{ color: "var(--bt-text)" }}>
           {project.name}
-        </h3>
+        </h2>
         {project.status === "wip" && <ProjectWipChip />}
       </div>
       <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--bt-muted)" }}>
