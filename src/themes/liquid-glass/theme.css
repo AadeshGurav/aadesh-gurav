@@ -151,11 +151,16 @@
   }
 }
 
-/* --- Sidebar: a floating island, never flush with the viewport edge --- */
-.al-sidebar {
-  position: sticky;
-  top: 24px;
-  align-self: start;
+/* --- Sidebar: a floating island, never flush with the viewport edge ---
+ * Sticky only at lg+, where it's a real second grid column — unconditional
+ * sticky positioning pinned it near the top of the single-column mobile
+ * layout and let later sections (Contact) scroll up underneath it. */
+@media (min-width: 1024px) {
+  .al-sidebar {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+  }
 }
 
 [data-theme="liquid-glass"] .theme-switcher-trigger {
