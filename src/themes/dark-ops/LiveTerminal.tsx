@@ -90,7 +90,7 @@ export default function LiveTerminal({
         {history.map((line, i) => (
           <p
             key={i}
-            className="whitespace-pre-wrap"
+            className="do-history-line whitespace-pre-wrap"
             style={{ color: line.type === "input" ? "var(--do-accent)" : "var(--do-muted)" }}
           >
             {line.type === "input" ? `$ ${line.text}` : line.text}

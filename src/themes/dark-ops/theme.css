@@ -51,11 +51,75 @@
   box-shadow: 0 0 12px 1px oklch(0.85 0.19 145 / 0.25);
 }
 
-.do-sidebar {
-  position: sticky;
-  top: 0;
-  align-self: start;
-  font-size: 0.9375rem;
+/* Anchor-jump offset so a section heading doesn't land under the sticky
+   top bar (StatusBar, ~3.5rem tall). */
+[data-theme="dark-ops"] section[id],
+[data-theme="dark-ops"] #home {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Boot-sequence line reveal — a per-line fade, not a replayed typing
+   animation, so it stays cheap and is fully skipped under reduced motion. */
+@keyframes do-boot-line-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[data-theme="dark-ops"] .do-boot-line {
+  animation: do-boot-line-in 200ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="dark-ops"] .do-boot-line {
+    animation: none;
+  }
+}
+
+/* Hover treatment — nav, log links, and log entries all get a visible,
+   non-color-only change (underline/brightness/tint), plus the terminal's
+   own history lines. */
+[data-theme="dark-ops"] .do-nav-link:hover,
+[data-theme="dark-ops"] .do-skip:hover {
+  color: var(--do-accent);
+  text-decoration: underline;
+}
+
+[data-theme="dark-ops"] .do-log-link:hover {
+  color: var(--do-accent);
+  filter: brightness(1.2);
+  text-decoration: underline;
+}
+
+[data-theme="dark-ops"] .do-log-entry:hover {
+  border-color: var(--do-accent-dim);
+  background: color-mix(in oklch, var(--do-panel), var(--do-accent) 6%);
+}
+
+[data-theme="dark-ops"] .do-history-line:hover {
+  background: color-mix(in oklch, var(--do-panel), var(--do-accent) 8%);
+}
+
+/* Terminal-native WIP marker — bracketed, no pill, overriding the generic
+   fallback in themes/motion.css. */
+[data-theme="dark-ops"] .wip-chip {
+  display: inline;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--do-accent-dim);
+}
+
+[data-theme="dark-ops"] .wip-chip::before {
+  content: "[";
+}
+
+[data-theme="dark-ops"] .wip-chip::after {
+  content: "]";
 }
 
 /* `matrix` terminal command overlay — CSS-only falling digits, auto-dismissed

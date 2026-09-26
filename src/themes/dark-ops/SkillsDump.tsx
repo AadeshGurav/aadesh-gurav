@@ -9,7 +9,7 @@ export default function SkillsDump({ skills }: { skills: SkillGroup[] }) {
       </p>
       <div className="flex flex-col gap-3 text-sm">
         {skills.map((group) => (
-          <div key={group.category}>
+          <div key={group.category} className="do-log-entry border-l-2 pl-3" style={{ borderColor: "var(--do-border)" }}>
             <p style={{ color: "var(--do-muted)" }}>[{group.category}]</p>
             <p className="pl-4" style={{ color: "var(--do-text)" }}>
               {group.items.join(", ")}
