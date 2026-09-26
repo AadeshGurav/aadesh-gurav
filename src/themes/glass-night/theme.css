@@ -1,0 +1,80 @@
+[data-theme="glass-night"] {
+  --gn-bg: oklch(0.16 0.03 265);
+  --gn-bg-solid: oklch(0.18 0.03 265);
+  --gn-glass: oklch(0.3 0.03 265 / 0.55);
+  --gn-border: oklch(1 0 0 / 0.12);
+  --gn-text: oklch(0.93 0.02 265);
+  --gn-muted: oklch(0.7 0.02 265);
+  --gn-accent: oklch(0.75 0.12 220);
+}
+
+[data-theme="glass-night"] body {
+  background: var(--gn-bg);
+  color: var(--gn-text);
+}
+
+[data-theme="glass-night"] a:focus-visible,
+[data-theme="glass-night"] button:focus-visible,
+[data-theme="glass-night"] input:focus-visible {
+  outline: 2px solid var(--gn-accent);
+  outline-offset: 2px;
+}
+
+.gn-panel {
+  position: relative;
+  background: var(--gn-glass);
+  border: 1px solid var(--gn-border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.gn-panel-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: overlay;
+  transition: opacity 300ms var(--ease-out);
+  background: radial-gradient(240px circle at var(--sheen-x, 50%) var(--sheen-y, 50%), oklch(1 0 0 / 0.35), transparent 70%);
+}
+
+/* Reduced-transparency / high-contrast: swap glass for a solid fill. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .gn-panel {
+    background: var(--gn-bg-solid);
+    backdrop-filter: none;
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .gn-panel {
+    background: var(--gn-bg-solid);
+  }
+}
+
+/* Aurora drift, paused under reduced motion. */
+@keyframes gn-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(4%, -3%); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="glass-night"] .gn-blob {
+    animation: gn-drift 26s ease-in-out infinite;
+  }
+  [data-theme="glass-night"] .gn-blob:nth-child(2) {
+    animation-duration: 32s;
+    animation-direction: reverse;
+  }
+  [data-theme="glass-night"] .gn-blob:nth-child(3) {
+    animation-duration: 22s;
+  }
+}
+
+[data-theme="glass-night"] .theme-switcher-trigger {
+  background: var(--gn-glass);
+  color: var(--gn-accent);
+  border: 1px solid var(--gn-border);
+  backdrop-filter: blur(12px);
+}

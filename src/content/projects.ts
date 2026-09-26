@@ -1,0 +1,103 @@
+import type { Project } from "./types";
+
+/**
+ * The full project list. Toggle `show` to feature/hide a project; `order`
+ * controls display order (lower = first). New entries default to
+ * `show: false` until real content is written for them — see README.md.
+ */
+export const projects: Project[] = [
+  {
+    id: "jarvis",
+    name: "JARVIS",
+    description: "A bare-metal autonomous AI operating system that boots as PID 1 on Alpine Linux.",
+    longDescription: "Dual-brain architecture pairing a local llama.cpp model with remote Claude/GPT-4 calls, coordinating 7 specialized agents. Includes self-fine-tuning, LUKS2 disk encryption, and a Telegram interface for remote control.",
+    stack: ["Python", "Alpine Linux", "llama.cpp", "LUKS2"],
+    repoUrl: "https://github.com/AadeshGurav/JARVIS",
+    highlight: "Boots as PID 1",
+    show: true,
+    order: 1,
+  },
+  {
+    id: "nebuladb",
+    name: "NebulaDB",
+    description: "A document database built from scratch in Rust, with a custom storage engine and query layer.",
+    stack: ["Rust"],
+    repoUrl: "https://github.com/AadeshGurav/NebulaDB",
+    highlight: "Custom storage engine, no framework",
+    show: true,
+    order: 2,
+  },
+  {
+    id: "polystore",
+    name: "polystore",
+    description: "A Frappe proof-of-concept that routes each DocType to MongoDB or Neo4j behind one adapter contract.",
+    longDescription: "Documents go to MongoDB, graph-shaped data goes to Neo4j — both reachable through a single traversal API, so the application layer never has to know which store it's talking to.",
+    stack: ["Python", "Frappe", "MongoDB", "Neo4j"],
+    repoUrl: "https://github.com/AadeshGurav/polystore",
+    show: true,
+    order: 3,
+  },
+  {
+    id: "optiflow",
+    name: "OptiFlow",
+    description: "A WhatsApp-integrated appointment and patient management system with real-time people-counting.",
+    stack: ["Python", "MongoDB", "Dart", "WhatsApp API"],
+    repoUrl: "https://github.com/AadeshGurav/OptiFlow",
+    show: true,
+    order: 4,
+  },
+  {
+    id: "tiffin",
+    name: "tiffin",
+    description: "A unit-based meal coupon system for a school canteen, piloted on a single campus.",
+    stack: ["Python"],
+    repoUrl: "https://github.com/AadeshGurav/tiffin",
+    show: true,
+    order: 5,
+  },
+  {
+    id: "senderrr",
+    name: "Senderrr",
+    description: "TODO: write a real one-line description before enabling this project.",
+    stack: ["TypeScript"],
+    repoUrl: "https://github.com/AadeshGurav/Senderrr",
+    show: false,
+    order: 6,
+  },
+  {
+    id: "wealthwatch",
+    name: "WealthWatch",
+    description: "TODO: write a real one-line description before enabling this project.",
+    stack: ["TypeScript"],
+    repoUrl: "https://github.com/AadeshGurav/WealthWatch",
+    show: false,
+    order: 7,
+  },
+  {
+    id: "fast-api-boilerplate",
+    name: "FastAPI Boilerplate",
+    description: "A starter template for FastAPI projects.",
+    stack: ["Python", "FastAPI"],
+    repoUrl: "https://github.com/AadeshGurav/Fast-API-Boiler-Plate",
+    show: false,
+    order: 8,
+  },
+  {
+    id: "termux",
+    name: "Termux",
+    description: "A tutorial series on using Termux on Android.",
+    stack: ["Shell"],
+    repoUrl: "https://github.com/AadeshGurav/Termux",
+    show: false,
+    order: 9,
+  },
+  {
+    id: "aadesh9985-github-io",
+    name: "Earlier portfolio",
+    description: "An earlier iteration of this personal portfolio site.",
+    stack: ["CSS"],
+    repoUrl: "https://github.com/AadeshGurav/Aadesh9985.github.io",
+    show: false,
+    order: 10,
+  },
+];

@@ -1,0 +1,74 @@
+[data-theme="liquid-glass"] {
+  --al-bg: oklch(0.97 0.005 240);
+  --al-bg-solid: oklch(0.94 0.005 240);
+  --al-glass: oklch(1 0 0 / 0.6);
+  --al-border: oklch(1 0 0 / 0.5);
+  --al-text: oklch(0.2 0.01 240);
+  --al-muted: oklch(0.45 0.01 240);
+  --al-accent: oklch(0.55 0.18 250);
+}
+
+[data-theme="liquid-glass"] body {
+  background: var(--al-bg);
+  color: var(--al-text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  padding-bottom: 88px; /* keep content clear of the fixed bottom tab bar */
+}
+
+[data-theme="liquid-glass"] a:focus-visible,
+[data-theme="liquid-glass"] button:focus-visible {
+  outline: 2px solid var(--al-accent);
+  outline-offset: 2px;
+}
+
+.al-tile {
+  background: var(--al-glass);
+  border: 1px solid oklch(0 0 0 / 0.06);
+  border-top: 1px solid var(--al-border);
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px oklch(0 0 0 / 0.05);
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .al-tile {
+    background: var(--al-bg-solid);
+    backdrop-filter: none;
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .al-tile {
+    background: var(--al-bg-solid);
+  }
+}
+
+.al-tabbar {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 40;
+  background: var(--al-glass);
+  border: 1px solid oklch(0 0 0 / 0.06);
+  border-top: 1px solid var(--al-border);
+  border-radius: 9999px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px oklch(0 0 0 / 0.08);
+}
+
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .al-tabbar {
+    background: var(--al-bg-solid);
+    backdrop-filter: none;
+  }
+}
+
+[data-theme="liquid-glass"] .theme-switcher-trigger {
+  background: var(--al-glass);
+  color: var(--al-accent);
+  border: 1px solid oklch(0 0 0 / 0.06);
+  border-top: 1px solid var(--al-border);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px oklch(0 0 0 / 0.08);
+}

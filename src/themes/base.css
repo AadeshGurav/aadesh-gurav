@@ -1,0 +1,15 @@
+/* Always-loaded base colors, keyed by the [data-theme] attribute the inline
+   script in index.html sets before React hydrates. This is what the visitor
+   sees during the brief window before the active theme's own chunk arrives —
+   see ThemeSkeleton.tsx. Each theme also defines its own full palette in its
+   own theme.css once loaded; these rules only need to match that theme's base
+   background/foreground closely enough to avoid a visible flash. */
+
+[data-theme="dark-ops"] body { background: #0a0a0a; color: #d4f7d4; }
+[data-theme="swiss-editorial"] body { background: #f7f6f2; color: #141414; }
+[data-theme="neubrutalist"] body { background: #f7f4ec; color: #15130f; }
+[data-theme="glass-night"] body { background: #0d0f1a; color: #e8ecf7; }
+[data-theme="liquid-glass"] body { background: #f3f5f8; color: #1c1c1e; }
+[data-theme="flat-minimal"] body { background: #faf9f6; color: #1a1a18; }
+[data-theme="cyberpunk"] body { background: #06050a; color: #f2e9ff; }
+[data-theme="bento"] body { background: #f5f5f2; color: #171714; }
