@@ -25,11 +25,66 @@
   transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
 
+[data-theme="bento"] .bt-tile a,
+[data-theme="bento"] .bt-tile summary {
+  transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out), filter 150ms var(--ease-out);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .bt-tile:hover {
-    transform: translateY(-2px);
+  .bt-tile:hover,
+  [data-theme="bento"] .bt-tile a:hover,
+  [data-theme="bento"] .bt-tile summary:hover {
     box-shadow: 0 8px 24px oklch(0 0 0 / 0.06);
   }
+
+  [data-theme="bento"] .bt-tile a:hover,
+  [data-theme="bento"] .bt-tile summary:hover {
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.1);
+    filter: brightness(1.08);
+  }
+}
+
+/* Lift is a motion effect: skip it under reduced motion, keep shadow/filter above unconditional. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .bt-tile:hover {
+    transform: translateY(-2px);
+  }
+
+  [data-theme="bento"] .bt-tile a:hover,
+  [data-theme="bento"] .bt-tile summary:hover {
+    transform: translateY(-1px);
+  }
+}
+
+[data-theme="bento"] .wip-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: oklch(0.68 0.15 55 / 0.15);
+  color: var(--bt-accent);
+  border: 1px solid oklch(0.68 0.15 55 / 0.3);
+}
+
+[data-theme="bento"] .bt-tile summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+[data-theme="bento"] .bt-tile summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Row height comes from grid auto-sizing (no fixed grid-auto-rows), so an
+   expanded <details> just grows its row instead of clipping or overflowing. */
+[data-theme="bento"] .bt-media {
+  margin-top: 0.5rem;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 [data-theme="bento"] .theme-switcher-trigger {
