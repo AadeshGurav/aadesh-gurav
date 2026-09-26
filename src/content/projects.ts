@@ -16,6 +16,7 @@ export const projects: Project[] = [
     highlight: "Boots as PID 1",
     show: true,
     order: 1,
+    media: { kind: "gradient", value: "265", alt: "JARVIS system boot preview" },
   },
   {
     id: "nebuladb",
@@ -26,6 +27,7 @@ export const projects: Project[] = [
     highlight: "Custom storage engine, no framework",
     show: true,
     order: 2,
+    media: { kind: "gradient", value: "20", alt: "NebulaDB storage engine preview" },
   },
   {
     id: "polystore",
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/polystore",
     show: true,
     order: 3,
+    media: { kind: "gradient", value: "140", alt: "polystore adapter routing preview" },
   },
   {
     id: "optiflow",
@@ -45,6 +48,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/OptiFlow",
     show: true,
     order: 4,
+    media: { kind: "gradient", value: "340", alt: "OptiFlow appointment dashboard preview" },
   },
   {
     id: "tiffin",
@@ -54,6 +58,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/tiffin",
     show: true,
     order: 5,
+    media: { kind: "gradient", value: "45", alt: "tiffin coupon system preview" },
   },
   {
     id: "senderrr",
@@ -63,6 +68,8 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/Senderrr",
     show: false,
     order: 6,
+    status: "wip",
+    media: { kind: "gradient", value: "200", alt: "Senderrr preview" },
   },
   {
     id: "wealthwatch",
@@ -72,6 +79,8 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/WealthWatch",
     show: false,
     order: 7,
+    status: "wip",
+    media: { kind: "gradient", value: "95", alt: "WealthWatch preview" },
   },
   {
     id: "fast-api-boilerplate",
@@ -81,6 +90,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/Fast-API-Boiler-Plate",
     show: false,
     order: 8,
+    media: { kind: "gradient", value: "165", alt: "FastAPI Boilerplate preview" },
   },
   {
     id: "termux",
@@ -90,6 +100,7 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/Termux",
     show: false,
     order: 9,
+    media: { kind: "gradient", value: "120", alt: "Termux tutorial preview" },
   },
   {
     id: "aadesh9985-github-io",
@@ -99,5 +110,6 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/AadeshGurav/Aadesh9985.github.io",
     show: false,
     order: 10,
+    media: { kind: "gradient", value: "300", alt: "Earlier portfolio preview" },
   },
 ];

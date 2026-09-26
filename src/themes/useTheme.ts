@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { themes, type ThemeId } from "./registry";
 
-const STORAGE_KEY = "portfolio-theme";
+export const STORAGE_KEY = "portfolio-theme";
 
 function pickRandom(): ThemeId {
   return themes[Math.floor(Math.random() * themes.length)].id;

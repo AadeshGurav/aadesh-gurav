@@ -11,3 +11,18 @@
 .press:active {
   transform: scale(0.97);
 }
+
+/* Fallback WIP badge styling — each theme.css may override with `.wip-chip { ... }`
+   for its own visual language; this keeps it legible everywhere until they do. */
+.wip-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: color-mix(in oklch, currentColor 15%, transparent);
+  border: 1px solid color-mix(in oklch, currentColor 35%, transparent);
+}

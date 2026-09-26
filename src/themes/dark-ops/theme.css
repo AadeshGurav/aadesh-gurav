@@ -57,3 +57,38 @@
   align-self: start;
   font-size: 0.9375rem;
 }
+
+/* `matrix` terminal command overlay — CSS-only falling digits, auto-dismissed
+   after 4s by LiveTerminal.tsx. Never rendered when reduced-motion is on
+   (guarded in JS before the state is set), this @media is a belt-and-braces
+   fallback in case it slips through. */
+[data-theme="dark-ops"] .do-matrix-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  pointer-events: none;
+  background: oklch(0.09 0.01 150 / 0.85);
+}
+
+[data-theme="dark-ops"] .do-matrix-column {
+  position: absolute;
+  top: -100%;
+  white-space: pre;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--do-accent);
+  opacity: 0.75;
+  animation: do-matrix-fall 1.8s linear infinite;
+}
+
+@keyframes do-matrix-fall {
+  from { transform: translateY(0); }
+  to { transform: translateY(200%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="dark-ops"] .do-matrix-overlay {
+    display: none;
+  }
+}

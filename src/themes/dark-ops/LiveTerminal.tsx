@@ -1,32 +1,73 @@
 import { useEffect, useRef, useState } from "react";
 import Terminal from "./Terminal";
+import type { Project } from "@/content/types";
+import {
+  STATIC_COMMANDS,
+  catProjectMedia,
+  cowsay,
+  fortune,
+  listProjects,
+  notFoundMessage,
+  pingLines,
+  resumeText,
+  themeCommand,
+} from "./commands";
 
 type Line = { type: "input" | "output"; text: string };
 
-const COMMANDS: Record<string, string> = {
-  help: "Available commands: help, whoami, about, projects, coffee, sudo, hire me, 42, clear",
-  whoami: "You. Obviously. A visitor with excellent taste in terminals.",
-  about: "Software engineer. Builds things that boot, store, and route data. Occasionally sleeps.",
-  projects: "Scroll up to ./projects — or just trust me, they're good.",
-  coffee: "Brewing... ☕ (I can't actually do that from here, but the thought counts.)",
-  sudo: "Nice try. This isn't that kind of website.",
-  "sudo rm -rf /": "Absolutely not. Nice try though.",
-  "hire me": "Bold move, and I respect it. Scroll to Contact — let's talk.",
-  "42": "The answer to life, the universe, and this portfolio.",
-  exit: "There is no escape. (Just close the tab, it's fine.)",
-};
+const HELP_TEXT =
+  "Available: help, whoami, about, ls, cat resume.txt, cat <project>.mp4, projects, date, history, theme <id>, matrix, fortune, cowsay <text>, ping <host>, coffee, sudo, hire me, 42, clear";
 
-export default function LiveTerminal() {
+export default function LiveTerminal({
+  projects,
+  bio,
+}: {
+  projects: Project[];
+  bio: string[];
+}) {
   const [history, setHistory] = useState<Line[]>([
     { type: "output", text: "Type 'help' to see what this does." },
   ]);
   const [value, setValue] = useState("");
+  const [matrixOn, setMatrixOn] = useState(false);
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
   }, [history]);
+
+  useEffect(() => {
+    if (!matrixOn) return;
+    const t = setTimeout(() => setMatrixOn(false), 4000);
+    return () => clearTimeout(t);
+  }, [matrixOn]);
+
+  function respond(cmd: string): string {
+    const lower = cmd.toLowerCase();
+
+    if (lower === "help") return HELP_TEXT;
+    if (lower === "ls" || lower === "ls projects" || lower === "ls ./projects") return listProjects(projects);
+    if (lower === "cat resume.txt") return resumeText(bio);
+    if (lower === "projects") return `${listProjects(projects)}\n(or scroll up to ./projects)`;
+    if (lower === "date") return new Date().toString();
+    if (lower === "history") return history.filter((l) => l.type === "input").map((l) => l.text).join("\n") || "(empty)";
+    if (lower === "fortune") return fortune();
+    if (lower === "matrix") {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduced) return "matrix mode skipped — you have reduced motion enabled, and that's respected here.";
+      setMatrixOn(true);
+      return "wake up, Neo...";
+    }
+    if (lower.startsWith("cowsay")) return cowsay(cmd.slice(6).trim());
+    if (lower.startsWith("ping ")) return pingLines(cmd.slice(5).trim()).join("\n");
+    if (lower.startsWith("ping")) return pingLines("localhost").join("\n");
+    if (lower.startsWith("theme ")) return themeCommand(lower);
+    const media = catProjectMedia(lower, projects);
+    if (media) return media;
+
+    return STATIC_COMMANDS[lower] ?? notFoundMessage(cmd);
+  }
 
   function runCommand(raw: string) {
     const cmd = raw.trim();
@@ -35,7 +76,7 @@ export default function LiveTerminal() {
       setHistory([]);
       return;
     }
-    const response = COMMANDS[cmd.toLowerCase()] ?? `command not found: ${cmd} — try 'help'`;
+    const response = respond(cmd);
     setHistory((h) => [...h, { type: "input", text: cmd }, { type: "output", text: response }]);
   }
 
@@ -47,7 +88,11 @@ export default function LiveTerminal() {
         aria-live="polite"
       >
         {history.map((line, i) => (
-          <p key={i} style={{ color: line.type === "input" ? "var(--do-accent)" : "var(--do-muted)" }}>
+          <p
+            key={i}
+            className="whitespace-pre-wrap"
+            style={{ color: line.type === "input" ? "var(--do-accent)" : "var(--do-muted)" }}
+          >
             {line.type === "input" ? `$ ${line.text}` : line.text}
           </p>
         ))}
@@ -73,6 +118,21 @@ export default function LiveTerminal() {
           style={{ color: "var(--do-text)", fontSize: 16 }}
         />
       </form>
+      {matrixOn && (
+        <div className="do-matrix-overlay" aria-hidden="true">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <span
+              key={i}
+              className="do-matrix-column"
+              style={{ left: `${(i / 24) * 100}%`, animationDelay: `${Math.random() * 1.5}s` }}
+            >
+              {Array.from({ length: 18 })
+                .map(() => (Math.random() > 0.5 ? "1" : "0"))
+                .join("\n")}
+            </span>
+          ))}
+        </div>
+      )}
     </Terminal>
   );
 }

@@ -23,6 +23,11 @@ export function generateProjectsFile(projects: Project[]): string {
       if (p.highlight) lines.push(`    highlight: "${esc(p.highlight)}",`);
       lines.push(`    show: ${p.show},`);
       lines.push(`    order: ${p.order},`);
+      if (p.status) lines.push(`    status: "${esc(p.status)}",`);
+      if (p.media) {
+        const alt = p.media.alt ? `, alt: "${esc(p.media.alt)}"` : "";
+        lines.push(`    media: { kind: "${p.media.kind}", value: "${esc(p.media.value)}"${alt} },`);
+      }
       lines.push(`  },`);
       return lines.join("\n");
     })

@@ -11,9 +11,11 @@ export default function ThemeLoader() {
 
   return (
     <>
-      <Suspense fallback={<ThemeSkeleton themeId={themeId} />}>
-        <ActiveTheme content={content} />
-      </Suspense>
+      <main>
+        <Suspense fallback={<ThemeSkeleton themeId={themeId} />}>
+          <ActiveTheme content={content} />
+        </Suspense>
+      </main>
       <ThemeSwitcher current={themeId} onSelect={setThemeId} onSurprise={randomize} />
     </>
   );

@@ -20,6 +20,12 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface ProjectMedia {
+  kind: "icon" | "gradient" | "image" | "video";
+  value: string;
+  alt?: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -31,6 +37,9 @@ export interface Project {
   highlight?: string;
   show: boolean;
   order: number;
+  /** Undefined/"live" = shipped. "wip" renders a WIP chip on the card. */
+  status?: "wip" | "live";
+  media?: ProjectMedia;
 }
 
 export interface ContactInfo {

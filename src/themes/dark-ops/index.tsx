@@ -27,7 +27,7 @@ export default function DarkOpsTheme({ content }: ThemeComponentProps) {
           </Terminal>
           <ProjectLog projects={content.projects} />
           <SkillsDump skills={content.skills} />
-          <LiveTerminal />
+          <LiveTerminal projects={content.projects} bio={content.profile.bio} />
           <ContactPrompt contact={content.contact} />
         </div>
       </div>

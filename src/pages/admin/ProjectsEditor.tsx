@@ -61,15 +61,27 @@ export default function ProjectsEditor({ initialProjects }: { initialProjects: P
                 </Button>
                 <span className="text-sm font-medium">{project.id}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Label htmlFor={`show-${project.id}`} className="text-sm">
-                  Show on site
-                </Label>
-                <Switch
-                  id={`show-${project.id}`}
-                  checked={project.show}
-                  onCheckedChange={(checked) => update(project.id, { show: checked })}
-                />
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor={`wip-${project.id}`} className="text-sm">
+                    WIP
+                  </Label>
+                  <Switch
+                    id={`wip-${project.id}`}
+                    checked={project.status === "wip"}
+                    onCheckedChange={(checked) => update(project.id, { status: checked ? "wip" : "live" })}
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Label htmlFor={`show-${project.id}`} className="text-sm">
+                    Show on site
+                  </Label>
+                  <Switch
+                    id={`show-${project.id}`}
+                    checked={project.show}
+                    onCheckedChange={(checked) => update(project.id, { show: checked })}
+                  />
+                </div>
               </div>
             </div>
 
