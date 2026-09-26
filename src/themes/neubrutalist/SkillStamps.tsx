@@ -13,7 +13,7 @@ export default function SkillStamps({ skills }: { skills: SkillGroup[] }) {
         {items.map((item, i) => (
           <span
             key={item}
-            className="border-2 px-4 py-2 text-sm font-black uppercase"
+            className="nb-stamp border-2 px-4 py-2 text-sm font-black uppercase"
             style={{
               borderColor: "var(--nb-ink)",
               background: "var(--nb-bg)",
