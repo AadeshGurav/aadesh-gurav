@@ -16,16 +16,19 @@
 [data-theme="cyberpunk"] a:focus-visible,
 [data-theme="cyberpunk"] button:focus-visible {
   outline: 2px solid var(--cp-cyan);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
+/* Angular HUD panel — the base surface for section blocks (About/Skills/
+   Contact/Hero). Corners are cut, never rounded: that asymmetry is the
+   whole point of the aesthetic (see plan's "angular-cut panels"). */
 .cp-panel {
   position: relative;
   background: var(--cp-panel);
   border: 1px solid var(--cp-border);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
 }
 
-/* HUD corner brackets, reinforcing the targeting-reticle motif */
 .cp-panel::before,
 .cp-panel::after {
   content: "";
@@ -49,6 +52,106 @@
   border-right: 2px solid var(--cp-magenta);
 }
 
+/* Project cards: same panel language, corner cut mirrored on alternating
+   cards so the grid reads as asymmetric HUD tiles, not a uniform table. */
+.cp-card {
+  position: relative;
+  background: var(--cp-panel);
+  border: 1px solid var(--cp-border);
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  transition: box-shadow 200ms var(--ease-out), border-color 200ms var(--ease-out);
+}
+
+.cp-card-flip {
+  clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px);
+}
+
+.cp-card:hover,
+.cp-card:focus-within {
+  border-color: var(--cp-cyan);
+  box-shadow: 0 0 0 1px var(--cp-cyan), 0 0 24px 2px oklch(0.75 0.18 200 / 0.35);
+}
+
+/* Fixed HUD chrome: the corner status readout and the corner nav share
+   this panel language, smaller and always-on-top. */
+.cp-hud-panel {
+  background: color-mix(in oklch, var(--cp-panel) 88%, transparent);
+  border: 1px solid var(--cp-border);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  backdrop-filter: blur(6px);
+}
+
+.cp-hud-btn {
+  border: 1px solid transparent;
+  transition: color 150ms var(--ease-out), border-color 150ms var(--ease-out), text-shadow 150ms var(--ease-out);
+}
+
+.cp-hud-btn:hover,
+.cp-hud-btn:focus-visible {
+  border-color: var(--cp-border);
+  color: var(--cp-cyan) !important;
+}
+
+.cp-status-dot {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: var(--cp-cyan);
+  box-shadow: 0 0 8px var(--cp-cyan);
+  animation: cp-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cp-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.cp-cta {
+  transition: box-shadow 150ms var(--ease-out);
+}
+
+.cp-cta:hover,
+.cp-cta:focus-visible {
+  box-shadow: 0 0 0 2px var(--cp-cyan), 0 0 20px 4px oklch(0.75 0.18 200 / 0.5);
+}
+
+/* Chromatic-aberration-style hover on links/nav: a two-hue text-shadow
+   offset in opposite directions, no color change needed to read as "lit". */
+[data-theme="cyberpunk"] a:hover,
+[data-theme="cyberpunk"] .cp-hud-btn:hover {
+  text-shadow: 1px 0 0 var(--cp-magenta), -1px 0 0 var(--cp-cyan);
+}
+
+/* Glitch-reveal wipe for project media — a clip-path wipe, not a fade,
+   to match the panel-cut visual language used everywhere else. */
+.cp-media-reveal {
+  position: relative;
+  border: 1px solid var(--cp-border);
+  animation: cp-wipe 260ms var(--ease-out) both;
+}
+
+@keyframes cp-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.wip-chip {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border: 1px solid var(--cp-magenta);
+  color: var(--cp-magenta);
+  background: transparent;
+  padding: 0.125rem 0.5rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%, 0 6px);
+}
+
 [data-theme="cyberpunk"] .theme-switcher-trigger {
   background: var(--cp-panel);
   color: var(--cp-cyan);
@@ -56,8 +159,34 @@
   box-shadow: 0 0 0 1px var(--cp-magenta), 0 0 16px 1px oklch(0.65 0.28 340 / 0.35);
 }
 
-.cp-sidebar {
-  position: sticky;
-  top: 0;
-  align-self: start;
+@media (prefers-reduced-motion: reduce) {
+  .cp-status-dot {
+    animation: none;
+  }
+
+  .cp-media-reveal {
+    animation: none;
+  }
+
+  .cp-card,
+  .cp-hud-btn,
+  .cp-cta {
+    transition: none;
+  }
+}
+
+/* Angular clip-path panels rely entirely on their border for shape once
+   glow/contrast preferences kick in — thicken it so the cut still reads. */
+@media (prefers-contrast: more) {
+  .cp-panel,
+  .cp-card,
+  .cp-hud-panel,
+  .cp-media-reveal {
+    border-width: 2px;
+  }
+
+  .cp-hud-panel {
+    backdrop-filter: none;
+    background: var(--cp-panel);
+  }
 }

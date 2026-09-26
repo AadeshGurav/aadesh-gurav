@@ -1,13 +1,20 @@
-export default function Header() {
+import type { Profile } from "@/content";
+
+/**
+ * HUD status readout, corner-anchored and fixed — not a full-width header.
+ * Small enough to stay out of the reading column at every breakpoint.
+ */
+export default function Header({ profile }: { profile: Profile }) {
   return (
-    <header
-      className="sticky top-0 z-40 border-b px-4 py-3 text-sm sm:px-6"
-      style={{ borderColor: "var(--cp-border)", background: "var(--cp-bg)" }}
+    <div
+      className="cp-hud-panel fixed left-3 top-3 z-40 flex items-center gap-2 px-3 py-2 font-mono text-[10px] uppercase tracking-widest sm:left-4 sm:top-4"
+      role="status"
     >
-      <span className="mx-auto flex max-w-6xl items-center gap-2 font-mono text-xs" style={{ color: "var(--cp-cyan)" }}>
-        <span className="h-2 w-2 rounded-full" style={{ background: "var(--cp-cyan)", boxShadow: "0 0 8px var(--cp-cyan)" }} />
-        SYSTEM ONLINE
+      <span className="cp-status-dot" aria-hidden="true" />
+      <span style={{ color: "var(--cp-cyan)" }}>Online</span>
+      <span className="hidden sm:inline" style={{ color: "var(--cp-muted)" }}>
+        // {profile.name}
       </span>
-    </header>
+    </div>
   );
 }
