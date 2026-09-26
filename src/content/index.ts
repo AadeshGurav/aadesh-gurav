@@ -11,4 +11,7 @@ export const content: SiteContent = {
   projects: rawProjects.filter((p) => p.show).sort((a, b) => a.order - b.order),
 };
 
+/** Unfiltered project list (including hidden ones), for the admin editor. */
+export const allProjects = rawProjects;
+
 export type { SiteContent, Profile, SkillGroup, Project, ContactInfo, SocialLink } from "./types";

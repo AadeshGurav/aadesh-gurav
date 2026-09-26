@@ -35,6 +35,25 @@ and is shared by every theme. Edit it once; every theme picks it up.
   add an entry with real `description`/`stack`/`repoUrl` and `show: true` — new
   entries default to `show: false` until you write real content for them.
 
+## Admin editor
+
+`/admin` is a lightweight content editor gated by a password — not a real
+backend, just a nicer way to edit content than hand-writing TypeScript:
+
+1. Set `VITE_ADMIN_PASSWORD` in Render → this service → Environment, and redeploy.
+   (For local dev, put it in `.env.local`, which is gitignored.)
+2. Visit `/admin`, enter the password.
+3. Edit projects (show/hide, reorder, description, stack, links), profile, or
+   skills, then hit **Copy** — it generates the exact file content for
+   `src/content/*.ts`. Paste it in, commit, push.
+
+**Important:** this is a soft gate, not real security. `VITE_ADMIN_PASSWORD`
+is a build-time env var, so it ends up readable in the shipped JS bundle —
+anyone who opens dev tools can find it. It only keeps casual visitors from
+finding the edit screen; it does not protect against a determined one, and
+nothing behind it can change the live site by itself (every action just
+generates text for you to paste and push yourself).
+
 ## Themes
 
 Each theme lives in `src/themes/<theme-id>/` as a self-contained layout
