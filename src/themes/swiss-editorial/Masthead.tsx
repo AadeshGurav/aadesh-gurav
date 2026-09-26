@@ -14,14 +14,14 @@ export default function Masthead({ name }: { name: string }) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <a
           href="#home"
-          className="press text-3xl font-bold uppercase tracking-tight sm:text-4xl"
+          className="press se-link text-3xl font-bold uppercase tracking-tight sm:text-4xl"
           style={{ color: "var(--se-ink)" }}
         >
           {name}
         </a>
         <nav className="flex gap-4 pt-2 text-xs font-medium uppercase tracking-widest">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="press" style={{ color: "var(--se-muted)" }}>
+            <a key={link.href} href={link.href} className="press se-link" style={{ color: "var(--se-muted)" }}>
               {link.label}
             </a>
           ))}

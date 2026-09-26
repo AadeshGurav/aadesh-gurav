@@ -12,7 +12,7 @@ export default function ContactIndex({ contact, name }: { contact: ContactInfo; 
             href={social.href}
             target={social.href.startsWith("mailto:") ? undefined : "_blank"}
             rel="noopener noreferrer"
-            className="press text-lg underline underline-offset-4"
+            className="press se-link text-lg underline underline-offset-4"
             style={{ color: "var(--se-ink)" }}
           >
             {social.label} — {social.href.replace("mailto:", "")}
