@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 import type { Profile } from "@/content";
 
+const links = [
+  { label: "--about", href: "#about" },
+  { label: "--work", href: "#work" },
+  { label: "--skills", href: "#skills" },
+  { label: "--try-it", href: "#try-it" },
+  { label: "--contact", href: "#contact" },
+];
+
 /**
- * Boot-sequence hero: lines reveal via staggered opacity+translateY, not a
- * width-based typewriter (width isn't a transform/opacity property). Rare,
- * first-view-only moment, so a longer/theatrical beat is earned here — see
- * the plan's Motion & Animation Standards.
+ * Boot sequence + nav. A normal block at the top on mobile (the hero);
+ * becomes a sticky left column at lg+ so the terminal doesn't sit as one
+ * centered strip on a huge flat-black void.
  */
-export default function BootHero({ profile }: { profile: Profile }) {
+export default function Sidebar({ profile }: { profile: Profile }) {
   const [reduced] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
@@ -27,7 +34,7 @@ export default function BootHero({ profile }: { profile: Profile }) {
   ];
 
   return (
-    <section id="home" className="mx-auto max-w-3xl px-4 pb-16 pt-12 sm:px-6 sm:pt-20">
+    <div id="home" className="do-sidebar px-4 pb-10 pt-10 sm:px-6 lg:px-0 lg:py-16">
       {lines.map((line, i) => (
         <p
           key={i}
@@ -47,6 +54,13 @@ export default function BootHero({ profile }: { profile: Profile }) {
       <p aria-hidden="true" style={{ color: "var(--do-accent)" }}>
         <span className="do-cursor">_</span>
       </p>
-    </section>
+      <nav className="mt-8 flex flex-wrap gap-x-4 gap-y-1 lg:flex-col">
+        {links.map((link) => (
+          <a key={link.href} href={link.href} className="press" style={{ color: "var(--do-muted)" }}>
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
   );
 }

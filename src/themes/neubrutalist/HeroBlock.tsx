@@ -2,7 +2,7 @@ import type { Profile } from "@/content";
 
 export default function HeroBlock({ profile }: { profile: Profile }) {
   return (
-    <section id="home" className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-20">
+    <section id="home" className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-20">
       <p className="mb-4 inline-block border-2 px-3 py-1 text-xs font-black uppercase tracking-wide" style={{ borderColor: "var(--nb-ink)", background: "var(--nb-accent)" }}>
         Read this.
       </p>

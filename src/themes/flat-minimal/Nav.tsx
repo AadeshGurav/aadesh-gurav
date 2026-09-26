@@ -7,7 +7,10 @@ const links = [
 
 export default function Nav({ name }: { name: string }) {
   return (
-    <header className="sticky top-0 z-40 border-b" style={{ borderColor: "var(--fm-border)", background: "color-mix(in oklch, var(--fm-canvas) 90%, transparent)", backdropFilter: "blur(6px)" }}>
+    <header
+      className="sticky top-0 z-40 border-b lg:hidden"
+      style={{ borderColor: "var(--fm-border)", background: "color-mix(in oklch, var(--fm-canvas) 90%, transparent)", backdropFilter: "blur(6px)" }}
+    >
       <nav className="mx-auto flex max-w-3xl items-center justify-between px-4 py-4 sm:px-6">
         <a href="#home" className="text-sm font-semibold" style={{ color: "var(--fm-ink)" }}>
           {name}

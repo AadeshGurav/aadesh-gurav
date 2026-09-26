@@ -3,7 +3,7 @@ import SectionLabel from "./SectionLabel";
 
 export default function SkillsRun({ skills }: { skills: SkillGroup[] }) {
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="skills" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <SectionLabel number="04" title="Skills" />
       <div className="flex flex-col gap-3">
         {skills.map((group) => (

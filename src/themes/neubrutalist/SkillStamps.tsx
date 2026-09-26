@@ -5,7 +5,7 @@ const ROTATIONS = [-2, 1, -1, 2, -1.5, 1.5];
 export default function SkillStamps({ skills }: { skills: SkillGroup[] }) {
   const items = skills.flatMap((group) => group.items);
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="skills" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <h2 className="mb-6 inline-block border-2 px-3 py-1 text-2xl font-black uppercase" style={{ borderColor: "var(--nb-ink)", background: "var(--nb-accent)" }}>
         Skills.
       </h2>

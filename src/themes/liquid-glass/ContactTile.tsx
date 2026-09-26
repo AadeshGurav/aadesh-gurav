@@ -6,7 +6,7 @@ const icons = { github: Github, linkedin: Linkedin, mail: Mail };
 
 export default function ContactTile({ contact, name }: { contact: ContactInfo; name: string }) {
   return (
-    <section id="contact" className="mx-auto max-w-2xl px-4 py-6 sm:px-6">
+    <section id="contact" className="px-4 py-6 sm:px-6 lg:px-0">
       <h2 className="mb-4 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--al-accent)" }}>
         Contact
       </h2>

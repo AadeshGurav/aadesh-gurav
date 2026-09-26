@@ -7,7 +7,7 @@ const links = [
 
 export default function Header({ name }: { name: string }) {
   return (
-    <header className="mx-auto max-w-5xl px-4 pt-6 sm:px-8">
+    <header className="mx-auto max-w-6xl px-4 pt-6 sm:px-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <a
           href="#home"

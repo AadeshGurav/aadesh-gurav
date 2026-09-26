@@ -1,7 +1,7 @@
 import type { ThemeComponentProps } from "../registry";
 import "./theme.css";
 import Nav from "./Nav";
-import Hero from "./Hero";
+import Sidebar from "./Sidebar";
 import About from "./About";
 import ProjectList from "./ProjectList";
 import SkillsRow from "./SkillsRow";
@@ -12,17 +12,21 @@ export default function FlatMinimalTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
       <Nav name={content.profile.name} />
-      <Hero profile={content.profile} />
-      <Reveal>
-        <About bio={content.profile.bio} />
-      </Reveal>
-      <ProjectList projects={content.projects} />
-      <Reveal>
-        <SkillsRow skills={content.skills} />
-      </Reveal>
-      <Reveal>
-        <ContactBlock contact={content.contact} name={content.profile.name} />
-      </Reveal>
+      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[280px_1fr] lg:gap-12 lg:px-6 lg:py-16">
+        <Sidebar profile={content.profile} />
+        <div className="flex flex-col gap-2">
+          <Reveal>
+            <About bio={content.profile.bio} />
+          </Reveal>
+          <ProjectList projects={content.projects} />
+          <Reveal>
+            <SkillsRow skills={content.skills} />
+          </Reveal>
+          <Reveal>
+            <ContactBlock contact={content.contact} name={content.profile.name} />
+          </Reveal>
+        </div>
+      </div>
     </div>
   );
 }

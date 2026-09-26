@@ -18,3 +18,9 @@
 [data-theme="flat-minimal"] .theme-switcher-trigger {
   background: var(--fm-ink);
 }
+
+.fm-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+}

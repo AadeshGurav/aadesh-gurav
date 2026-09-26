@@ -10,10 +10,14 @@ export default function MaterializePanel({
   children,
   className = "",
   delayMs = 0,
+  immediate = false,
 }: {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  /** Reveal on mount (next frame) instead of waiting for scroll-into-view —
+   * for content that's already above the fold, like the sidebar. */
+  immediate?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -22,6 +26,10 @@ export default function MaterializePanel({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(true);
       return;
+    }
+    if (immediate) {
+      const id = requestAnimationFrame(() => setVisible(true));
+      return () => cancelAnimationFrame(id);
     }
     const el = ref.current;
     if (!el) return;
@@ -36,7 +44,7 @@ export default function MaterializePanel({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   return (
     <div

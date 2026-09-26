@@ -12,7 +12,31 @@
   background: var(--al-bg);
   color: var(--al-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  padding-bottom: 88px; /* keep content clear of the fixed bottom tab bar */
+  padding-bottom: 88px; /* keep content clear of the fixed bottom tab bar (mobile only) */
+}
+
+@media (min-width: 1024px) {
+  [data-theme="liquid-glass"] body {
+    padding-bottom: 0;
+  }
+}
+
+@keyframes al-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(3%, -4%); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="liquid-glass"] .al-blob {
+    animation: al-drift 30s ease-in-out infinite;
+  }
+  [data-theme="liquid-glass"] .al-blob:nth-child(2) {
+    animation-duration: 36s;
+    animation-direction: reverse;
+  }
+  [data-theme="liquid-glass"] .al-blob:nth-child(3) {
+    animation-duration: 24s;
+  }
 }
 
 [data-theme="liquid-glass"] a:focus-visible,
@@ -62,6 +86,18 @@
     background: var(--al-bg-solid);
     backdrop-filter: none;
   }
+}
+
+@media (min-width: 1024px) {
+  .al-tabbar {
+    display: none; /* the sidebar's vertical nav replaces it at desktop width */
+  }
+}
+
+.al-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
 }
 
 [data-theme="liquid-glass"] .theme-switcher-trigger {

@@ -12,7 +12,7 @@ export default function Terminal({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="mx-auto max-w-3xl px-4 py-6 sm:px-6">
+    <section id={id} className="px-4 py-6 sm:px-6 lg:px-0">
       <div className="rounded-md border" style={{ borderColor: "var(--do-border)", background: "var(--do-panel)" }}>
         <div
           className="border-b px-4 py-2 text-xs uppercase tracking-wide"

@@ -7,7 +7,7 @@ const links = [
 
 export default function Masthead({ name }: { name: string }) {
   return (
-    <header className="mx-auto max-w-5xl px-4 pt-8 sm:px-8">
+    <header className="mx-auto max-w-6xl px-4 pt-8 sm:px-8">
       <p className="mb-2 text-xs font-medium uppercase tracking-widest" style={{ color: "var(--se-accent)" }}>
         Vol. 01 — Engineering Notes
       </p>

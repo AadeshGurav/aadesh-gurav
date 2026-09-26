@@ -5,7 +5,7 @@ const icons = { github: Github, linkedin: Linkedin, mail: Mail };
 
 export default function ContactBlock({ contact, name }: { contact: ContactInfo; name: string }) {
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="contact" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <div className="border-2 p-8 sm:p-12" style={{ borderColor: "var(--nb-ink)", background: "var(--nb-accent)" }}>
         <h2 className="text-3xl font-black uppercase sm:text-4xl" style={{ color: "var(--nb-ink)" }}>
           Say hi.

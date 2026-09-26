@@ -5,7 +5,7 @@ import Reveal from "./Reveal";
 
 export default function WorkIndex({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="work" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <SectionLabel number="03" title="Work" />
       <div>
         {projects.map((project, i) => (

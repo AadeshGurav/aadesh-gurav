@@ -2,7 +2,7 @@ import type { Profile } from "@/content";
 
 export default function IntroSpread({ profile }: { profile: Profile }) {
   return (
-    <section id="home" className="mx-auto max-w-5xl px-4 py-12 sm:px-8 sm:py-20">
+    <section id="home" className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-20">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12 sm:col-span-1">
           <span className="text-sm font-medium" style={{ color: "var(--se-accent)" }}>

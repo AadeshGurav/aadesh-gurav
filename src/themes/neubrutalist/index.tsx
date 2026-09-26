@@ -11,7 +11,7 @@ export default function NeubrutalistTheme({ content }: ThemeComponentProps) {
     <div className="min-h-screen">
       <Header name={content.profile.name} />
       <HeroBlock profile={content.profile} />
-      <section id="about" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+      <section id="about" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
         <h2
           className="mb-6 inline-block border-2 px-3 py-1 text-2xl font-black uppercase"
           style={{ borderColor: "var(--nb-ink)", background: "var(--nb-accent)" }}

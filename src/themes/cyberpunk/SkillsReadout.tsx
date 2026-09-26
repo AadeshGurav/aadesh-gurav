@@ -3,7 +3,7 @@ import GlitchText from "./GlitchText";
 
 export default function SkillsReadout({ skills }: { skills: SkillGroup[] }) {
   return (
-    <section id="skills" className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <section id="skills" className="px-4 py-12 sm:px-6 lg:px-0">
       <GlitchText
         text="[ DIAGNOSTICS ]"
         as="h2"

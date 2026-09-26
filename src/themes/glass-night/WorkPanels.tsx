@@ -4,11 +4,11 @@ import GlassPanel from "./GlassPanel";
 
 export default function WorkPanels({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
+    <section id="work" className="px-4 py-10 sm:px-6 lg:px-0">
       <h2 className="mb-4 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--gn-accent)" }}>
         Deployed
       </h2>
-      <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {projects.map((project) => (
           <GlassPanel key={project.id}>
             <h3 className="text-lg font-semibold" style={{ color: "var(--gn-text)" }}>

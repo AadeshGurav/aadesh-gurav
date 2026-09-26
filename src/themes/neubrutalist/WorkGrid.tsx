@@ -3,11 +3,11 @@ import type { Project } from "@/content";
 
 export default function WorkGrid({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="work" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <h2 className="mb-6 inline-block border-2 px-3 py-1 text-2xl font-black uppercase" style={{ borderColor: "var(--nb-ink)", background: "var(--nb-accent)" }}>
         Work.
       </h2>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {projects.map((project) => (
           <article
             key={project.id}

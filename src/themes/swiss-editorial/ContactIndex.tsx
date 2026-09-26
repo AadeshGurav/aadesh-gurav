@@ -3,7 +3,7 @@ import SectionLabel from "./SectionLabel";
 
 export default function ContactIndex({ contact, name }: { contact: ContactInfo; name: string }) {
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-4 py-12 sm:px-8">
+    <section id="contact" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
       <SectionLabel number="05" title="Contact" />
       <div className="flex flex-col gap-3">
         {contact.socials.map((social) => (

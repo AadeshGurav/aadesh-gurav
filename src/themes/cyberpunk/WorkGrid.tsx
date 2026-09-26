@@ -4,7 +4,7 @@ import GlitchText from "./GlitchText";
 
 export default function WorkGrid({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <section id="work" className="px-4 py-12 sm:px-6 lg:px-0">
       <GlitchText
         text="[ WORK LOG ]"
         as="h2"

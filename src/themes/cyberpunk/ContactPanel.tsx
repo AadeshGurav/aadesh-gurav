@@ -6,7 +6,7 @@ const icons = { github: Github, linkedin: Linkedin, mail: Mail };
 
 export default function ContactPanel({ contact, name }: { contact: ContactInfo; name: string }) {
   return (
-    <section id="contact" className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <section id="contact" className="px-4 py-12 sm:px-6 lg:px-0">
       <GlitchText
         text="[ ESTABLISH CONNECTION ]"
         as="h2"

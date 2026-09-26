@@ -3,7 +3,7 @@ import MaterializePanel from "./MaterializePanel";
 
 export default function SkillsChips({ skills }: { skills: SkillGroup[] }) {
   return (
-    <section id="skills" className="mx-auto max-w-2xl px-4 py-6 sm:px-6">
+    <section id="skills" className="px-4 py-6 sm:px-6 lg:px-0">
       <h2 className="mb-4 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--al-accent)" }}>
         Skills
       </h2>

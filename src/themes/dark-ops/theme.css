@@ -50,3 +50,10 @@
   border: 1px solid var(--do-border);
   box-shadow: 0 0 12px 1px oklch(0.85 0.19 145 / 0.25);
 }
+
+.do-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  font-size: 0.9375rem;
+}

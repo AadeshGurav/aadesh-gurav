@@ -9,8 +9,8 @@ import ContactTile from "./ContactTile";
 
 export default function BentoTheme({ content }: ThemeComponentProps) {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:py-16">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 xl:grid-cols-4">
         <IdentityTile profile={content.profile} />
         <StatTile id="about">
           <p className="text-xs font-medium uppercase tracking-wide" style={{ color: "var(--bt-muted)" }}>

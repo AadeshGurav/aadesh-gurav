@@ -78,3 +78,9 @@
   border: 1px solid var(--gn-border);
   backdrop-filter: blur(12px);
 }
+
+.gn-sidebar {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+}

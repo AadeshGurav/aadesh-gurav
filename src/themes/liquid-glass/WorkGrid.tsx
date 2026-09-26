@@ -4,13 +4,13 @@ import MaterializePanel from "./MaterializePanel";
 
 export default function WorkGrid({ projects }: { projects: Project[] }) {
   return (
-    <section id="work" className="mx-auto max-w-2xl px-4 py-6 sm:px-6">
+    <section id="work" className="px-4 py-6 sm:px-6 lg:px-0">
       <h2 className="mb-4 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--al-accent)" }}>
         Work
       </h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {projects.map((project, i) => (
-          <MaterializePanel key={project.id} delayMs={i * 40} className={i === 0 ? "sm:col-span-2" : ""}>
+          <MaterializePanel key={project.id} delayMs={i * 40} className={i === 0 ? "sm:col-span-2 xl:col-span-1" : ""}>
             <h3 className="text-lg font-semibold" style={{ color: "var(--al-text)" }}>
               {project.name}
             </h3>
