@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Shuffle, Palette } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { themes, type ThemeId } from "./registry";
+import { DARK_OPS_BOOT_SESSION_KEY as DARK_OPS_BOOT_KEY } from "./dark-ops/bootSessionKey";
 
 interface ThemeSwitcherProps {
   current: ThemeId;
@@ -14,9 +16,31 @@ interface ThemeSwitcherProps {
  * overrides — see src/themes/<id>/theme.css.
  */
 export default function ThemeSwitcher({ current, onSelect, onSurprise }: ThemeSwitcherProps) {
+  const [open, setOpen] = useState(false);
+
+  function selectTheme(id: ThemeId) {
+    // A deliberate switch INTO dark-ops should always replay its boot
+    // sequence, even if this session already saw it — a same-theme page
+    // reload keeps the once-per-session gate untouched.
+    if (id === "dark-ops" && id !== current) {
+      try {
+        sessionStorage.removeItem(DARK_OPS_BOOT_KEY);
+      } catch {
+        // private browsing — nothing to clear, harmless
+      }
+    }
+    onSelect(id);
+    setOpen(false);
+  }
+
+  function surprise() {
+    onSurprise();
+    setOpen(false);
+  }
+
   return (
-    <div className="theme-switcher fixed bottom-4 right-4 z-[9999]">
-      <Popover>
+    <div className="theme-switcher fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[9999]">
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <button
             type="button"
@@ -35,7 +59,7 @@ export default function ThemeSwitcher({ current, onSelect, onSurprise }: ThemeSw
               <button
                 key={theme.id}
                 type="button"
-                onClick={() => onSelect(theme.id)}
+                onClick={() => selectTheme(theme.id)}
                 aria-pressed={theme.id === current}
                 className={`rounded-md px-3 py-2 text-left text-sm transition-colors ${
                   theme.id === current
@@ -49,7 +73,7 @@ export default function ThemeSwitcher({ current, onSelect, onSurprise }: ThemeSw
           </div>
           <button
             type="button"
-            onClick={onSurprise}
+            onClick={surprise}
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-accent"
           >
             <Shuffle className="h-4 w-4" aria-hidden="true" />

@@ -13,7 +13,7 @@ export default function HeroBlock({ profile }: { profile: Profile }) {
           style={{ background: "var(--nb-accent)", border: "2px solid var(--nb-ink)" }}
         />
         <h1
-          className="relative border-2 px-4 py-6 text-3xl font-black leading-[1.05] sm:px-8 sm:py-10 sm:text-5xl"
+          className="multiline relative border-2 px-4 py-6 text-3xl font-black leading-[1.05] sm:px-8 sm:py-10 sm:text-5xl"
           style={{ background: "var(--nb-bg)", borderColor: "var(--nb-ink)", color: "var(--nb-ink)" }}
         >
           {profile.tagline}

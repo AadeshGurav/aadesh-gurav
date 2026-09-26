@@ -65,7 +65,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         {profile.role} · {profile.location}
       </p>
       <h1
-        className="max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-tight"
+        className="multiline max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-tight"
         style={{ color: "var(--fm-ink)" }}
       >
         {profile.tagline}

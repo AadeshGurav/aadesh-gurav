@@ -25,7 +25,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         className="relative text-3xl font-black uppercase leading-tight tracking-tight sm:text-4xl"
         style={{ color: "var(--cp-text)" }}
       />
-      <p className="relative mt-4 max-w-xl text-sm leading-relaxed" style={{ color: "var(--cp-muted)" }}>
+      <p className="multiline relative mt-4 max-w-xl text-sm leading-relaxed" style={{ color: "var(--cp-muted)" }}>
         {profile.tagline}
       </p>
       <a

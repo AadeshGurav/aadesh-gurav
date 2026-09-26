@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Profile } from "@/content";
-
-/** sessionStorage (not localStorage): replay once per browser session, not once ever. */
-const SESSION_KEY = "do-boot-seen";
+import { DARK_OPS_BOOT_SESSION_KEY as SESSION_KEY } from "./bootSessionKey";
 
 const BOOT_LINES = [
   "Initializing kernel...",
@@ -81,7 +79,7 @@ export default function BootSequence({ profile }: { profile: Profile }) {
             {profile.name} — {profile.role}
           </h1>
           <p style={{ color: "var(--do-accent)" }}>$ cat tagline.txt</p>
-          <p className="pl-4" style={{ color: "var(--do-text)" }}>
+          <p className="multiline pl-4" style={{ color: "var(--do-text)" }}>
             {profile.tagline}
           </p>
           <p aria-hidden="true" style={{ color: "var(--do-accent)" }}>

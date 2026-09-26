@@ -19,12 +19,18 @@ const links = [
  * it cut off the About/Contact text. Below `sm:` it collapses to a single
  * compact icon-only row (~48px tall) instead; the labeled column returns
  * at `sm:` and up where there's vertical room for it not to matter.
+ *
+ * Bottom-LEFT, not bottom-right: the global ThemeSwitcher button lives in
+ * the bottom-right corner on every theme (fixed, z-[9999]) — confirmed via
+ * real iPhone Safari screenshots that a bottom-right HudNav visually merges
+ * with it. Header already owns the top-left corner, so bottom-left keeps
+ * all four HUD corners distinct.
  */
 export default function HudNav() {
   return (
     <nav
       aria-label="Section navigation"
-      className="cp-hud-panel fixed bottom-3 right-3 z-40 flex items-center gap-0.5 p-1.5 font-mono text-[10px] uppercase tracking-wide sm:bottom-4 sm:right-4 sm:flex-col sm:items-stretch sm:gap-0.5 sm:p-2"
+      className="cp-hud-panel fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] left-3 z-40 flex items-center gap-0.5 p-1.5 font-mono text-[10px] uppercase tracking-wide sm:bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:left-4 sm:flex-col sm:items-stretch sm:gap-0.5 sm:p-2"
     >
       <span className="mb-1 hidden px-1 sm:block" style={{ color: "var(--cp-magenta)" }}>
         [NAV]

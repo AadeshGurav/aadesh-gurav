@@ -12,6 +12,13 @@
   transform: scale(0.97);
 }
 
+/* profile.tagline may contain an embedded \n for an intentional two-line
+   break — plain JSX text interpolation renders \n as a space, so every
+   theme that prints the tagline directly needs this to honor it. */
+.multiline {
+  white-space: pre-line;
+}
+
 /* Fallback WIP badge styling — each theme.css may override with `.wip-chip { ... }`
    for its own visual language; this keeps it legible everywhere until they do. */
 .wip-chip {

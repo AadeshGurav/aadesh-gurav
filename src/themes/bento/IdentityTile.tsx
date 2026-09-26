@@ -13,7 +13,7 @@ export default function IdentityTile({ profile }: { profile: Profile }) {
       <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl" style={{ color: "var(--bt-text)" }}>
         {profile.name}
       </h1>
-      <p className="mt-4 text-base leading-relaxed" style={{ color: "var(--bt-muted)" }}>
+      <p className="multiline mt-4 text-base leading-relaxed" style={{ color: "var(--bt-muted)" }}>
         {profile.tagline}
       </p>
       <div className="mt-6 flex items-center gap-3">

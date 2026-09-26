@@ -26,7 +26,7 @@ export default function Sidebar({ profile }: { profile: Profile }) {
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl" style={{ color: "var(--al-text)" }}>
           {profile.name}
         </h1>
-        <p className="mt-4 text-base leading-relaxed" style={{ color: "var(--al-muted)" }}>
+        <p className="multiline mt-4 text-base leading-relaxed" style={{ color: "var(--al-muted)" }}>
           {profile.tagline}
         </p>
         <nav className="mt-6 hidden flex-col gap-1 lg:flex">

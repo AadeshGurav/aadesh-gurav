@@ -22,7 +22,7 @@ export default function HeroPanel({ profile }: { profile: Profile }) {
         <p className="mt-2 text-sm font-medium" style={{ color: "var(--gn-muted)" }}>
           {profile.role} · {profile.location}
         </p>
-        <p className="mt-5 text-base leading-relaxed" style={{ color: "var(--gn-text)" }}>
+        <p className="multiline mt-5 text-base leading-relaxed" style={{ color: "var(--gn-text)" }}>
           {profile.tagline}
         </p>
         <a

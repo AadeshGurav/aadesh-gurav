@@ -95,7 +95,11 @@
   position: fixed;
   left: 50%;
   bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
-  transform: translateX(-50%);
+  /* True-centered, the capsule's right edge sits within ~7px of the global
+     ThemeSwitcher button (bottom-right, every theme) at narrow widths —
+     confirmed merging on real iPhone Safari. Biased left below sm: for
+     clearance; centered again at sm:+ where there's room either way. */
+  transform: translateX(calc(-50% - 28px));
   will-change: transform;
   z-index: 40;
   display: inline-flex;
@@ -135,6 +139,12 @@
 .al-tab:focus-visible {
   outline: 2px solid var(--al-accent);
   outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .al-tabbar {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {

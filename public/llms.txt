@@ -1,8 +1,8 @@
 # Aadesh Gurav
 
-> Software engineer building systems below the application layer — storage engines, process orchestration, and infrastructure other software depends on. Based in Ratnagiri, Maharashtra, India.
+> Backend engineer building production systems for the real world — WhatsApp automation, offline-first canteen and clinic software, and databases written from scratch. Based in Ratnagiri, Maharashtra, India (Konkan coast), available remote.
 
-Aadesh works mostly in Python and Rust, with Docker, Kubernetes, and cloud platforms for production deployment. Recent work spans a document database built from scratch in Rust, an autonomous AI operating system that boots as PID 1 on Alpine Linux, and a proof-of-concept that routes data between MongoDB and Neo4j behind a single adapter contract.
+Aadesh works mostly in Python (FastAPI, Django) and NestJS, with Rust for systems-level curiosity projects. Recent production work includes a multi-tenant WhatsApp automation gateway, a school canteen management system running off a phone hotspot, and a personal FastAPI boilerplate used as the foundation for client work.
 
 This site ([aadeshgurav.online](https://aadeshgurav.online/)) is a personal portfolio with 8 selectable visual themes (Terminal, Glassmorphism Night, Apple Liquid Glass, Flat Minimal, Cyberpunk, Swiss Editorial, Neubrutalist, Bento Dashboard) — the content is identical across themes, only the presentation differs.
 

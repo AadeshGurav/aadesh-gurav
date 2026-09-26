@@ -11,7 +11,7 @@ export default function IntroSpread({ profile }: { profile: Profile }) {
         </div>
         <div className="col-span-12 sm:col-span-8">
           <h1
-            className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+            className="multiline text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
             style={{ color: "var(--se-ink)" }}
           >
             {profile.tagline}
