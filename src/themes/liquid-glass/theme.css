@@ -6,7 +6,7 @@
   --al-border: oklch(1 0 0 / 0.5);
   --al-text: oklch(0.2 0.01 240);
   --al-muted: oklch(0.45 0.01 240);
-  --al-accent: oklch(0.55 0.18 250);
+  --al-accent: oklch(0.5 0.18 250);
 }
 
 [data-theme="liquid-glass"] body {
