@@ -3,20 +3,15 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import type { Profile } from "@/content";
 
 const icons = { github: Github, linkedin: Linkedin, mail: Mail };
-const links = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
 
 /**
- * Identity + nav + the cursor spotlight. A normal block at the top on
- * mobile (the hero); becomes a sticky left column at lg+ so the page uses
- * its full width intentionally instead of one centered strip.
+ * The big typographic moment: profile.tagline set oversized, carrying the
+ * page's primary visual interest instead of a panel or a hero image. A
+ * cursor-following spotlight adds a subtle accent wash, gated to
+ * fine-pointer/hover devices and off under reduced motion.
  */
-export default function Sidebar({ profile }: { profile: Profile }) {
-  const sectionRef = useRef<HTMLDivElement>(null);
+export default function Hero({ profile }: { profile: Profile }) {
+  const sectionRef = useRef<HTMLElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,10 +46,10 @@ export default function Sidebar({ profile }: { profile: Profile }) {
   }, []);
 
   return (
-    <div
+    <section
       id="home"
       ref={sectionRef}
-      className="fm-sidebar relative overflow-hidden px-4 pb-10 pt-10 sm:px-6 lg:px-0 lg:py-16"
+      className="relative flex min-h-[85vh] flex-col justify-center overflow-hidden px-4 py-24 sm:px-6 sm:py-32 lg:px-12"
     >
       <div
         ref={spotRef}
@@ -63,38 +58,29 @@ export default function Sidebar({ profile }: { profile: Profile }) {
         style={{
           opacity: 0,
           background:
-            "radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 50%), color-mix(in oklch, var(--fm-accent) 12%, transparent), transparent 70%)",
+            "radial-gradient(640px circle at var(--spot-x, 50%) var(--spot-y, 50%), color-mix(in oklch, var(--fm-accent) 10%, transparent), transparent 70%)",
         }}
       />
-      <p className="mb-3 text-sm font-medium" style={{ color: "var(--fm-accent)" }}>
+      <p className="mb-5 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--fm-accent)" }}>
         {profile.role} · {profile.location}
       </p>
-      <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl" style={{ color: "var(--fm-ink)" }}>
-        {profile.name}
-      </h1>
-      <p className="mt-4 text-base leading-relaxed" style={{ color: "var(--fm-muted)" }}>
+      <h1
+        className="max-w-4xl text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-tight"
+        style={{ color: "var(--fm-ink)" }}
+      >
         {profile.tagline}
+      </h1>
+      <p className="mt-6 text-base font-medium" style={{ color: "var(--fm-muted)" }}>
+        {profile.name}
       </p>
       <a
         href="#projects"
-        className="press mt-6 inline-block rounded-md px-5 py-2.5 text-sm font-medium"
+        className="fm-cta press mt-10 inline-flex w-fit items-center rounded-md px-6 py-3 text-sm font-medium"
         style={{ background: "var(--fm-accent)", color: "var(--fm-on-accent)" }}
       >
         View work
       </a>
-      <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-1 lg:mt-8 lg:flex-col lg:gap-1">
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="press rounded-md text-sm font-medium lg:px-0 lg:py-1"
-            style={{ color: "var(--fm-muted)" }}
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-10 flex items-center gap-3">
         {profile.socials.map((social) => {
           const Icon = social.icon ? icons[social.icon] : null;
           return (
@@ -104,7 +90,7 @@ export default function Sidebar({ profile }: { profile: Profile }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="press flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:opacity-70"
+              className="fm-icon-link press flex h-10 w-10 items-center justify-center rounded-full border"
               style={{ borderColor: "var(--fm-border)", color: "var(--fm-ink)" }}
             >
               {Icon ? <Icon className="h-4 w-4" aria-hidden="true" /> : social.label[0]}
@@ -112,6 +98,6 @@ export default function Sidebar({ profile }: { profile: Profile }) {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }
