@@ -93,7 +93,7 @@
  * blur isn't recomputed against scroll on every frame. */
 .al-tabbar {
   position: fixed;
-  left: 12px;
+  left: 8px;
   bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
   /* Left-anchored (not centered) below sm: — a centered capsule's right
      edge lands within a few px of the global ThemeSwitcher button
