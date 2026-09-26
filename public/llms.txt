@@ -8,11 +8,12 @@ This site ([aadeshgurav.online](https://aadeshgurav.online/)) is a personal port
 
 ## Projects
 
-- [JARVIS](https://github.com/AadeshGurav/JARVIS): a bare-metal autonomous AI operating system that boots as PID 1 on Alpine Linux.
-- [NebulaDB](https://github.com/AadeshGurav/NebulaDB): a document database built from scratch in Rust, with a custom storage engine and query layer.
-- [polystore](https://github.com/AadeshGurav/polystore): a Frappe proof-of-concept that routes each DocType to MongoDB or Neo4j behind one adapter contract.
-- [OptiFlow](https://github.com/AadeshGurav/OptiFlow): a WhatsApp-integrated appointment and patient management system with real-time people-counting.
-- [tiffin](https://github.com/AadeshGurav/tiffin): a unit-based meal coupon system for a school canteen, piloted on a single campus.
+- [Senderrr](https://github.com/AadeshGurav/Senderrr): a multi-tenant WhatsApp automation gateway with an atomic send-lock and Chrome DevTools-level interception of WhatsApp's own link-preview fetch, migrating from the cloud to a single Android phone.
+- [tiffin](https://github.com/AadeshGurav/tiffin): replaces a school canteen's handwritten meal register — one scan per meal per day, grace credit for empty balances, UPI QR billing, running off a phone hotspot.
+- [FastAPI Boilerplate](https://github.com/AadeshGurav/Fast-API-Boiler-Plate): a production foundation with dependency injection, the repository pattern across four databases, rotating JWTs, Redis sessions, rate limiting, and Sentry.
+- [OptiFlow](https://github.com/AadeshGurav/OptiFlow): a clinic appointment system that runs through WhatsApp — books slots, estimates travel time, and counts people in the waiting room. (work in progress)
+- [NebulaDB](https://github.com/AadeshGurav/NebulaDB): a document database written from scratch in Rust, with a custom storage engine. (work in progress)
+- [JARVIS](https://github.com/AadeshGurav/JARVIS): an autonomous AI operating system that boots as PID 1, with 7 agents and a local-plus-cloud dual brain. (work in progress)
 
 ## Contact
 
