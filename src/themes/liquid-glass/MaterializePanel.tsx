@@ -9,11 +9,15 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 export default function MaterializePanel({
   children,
   className = "",
+  bodyClassName = "p-6 sm:p-8",
   delayMs = 0,
   immediate = false,
 }: {
   children: ReactNode;
   className?: string;
+  /** Override the default padded body — pass "" for full-bleed content
+   * (e.g. a media thumbnail that should reach the tile's rounded edge). */
+  bodyClassName?: string;
   delayMs?: number;
   /** Reveal on mount (next frame) instead of waiting for scroll-into-view —
    * for content that's already above the fold, like the sidebar. */
@@ -57,7 +61,7 @@ export default function MaterializePanel({
         transition: `opacity 400ms var(--ease-out) ${delayMs}ms, transform 400ms var(--ease-out) ${delayMs}ms, filter 400ms var(--ease-out) ${delayMs}ms`,
       }}
     >
-      <div className="p-6 sm:p-8">{children}</div>
+      <div className={bodyClassName}>{children}</div>
     </div>
   );
 }

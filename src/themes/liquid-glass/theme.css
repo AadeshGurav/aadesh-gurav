@@ -2,6 +2,7 @@
   --al-bg: oklch(0.97 0.005 240);
   --al-bg-solid: oklch(0.94 0.005 240);
   --al-glass: oklch(1 0 0 / 0.6);
+  --al-glass-heavy: oklch(1 0 0 / 0.75);
   --al-border: oklch(1 0 0 / 0.5);
   --al-text: oklch(0.2 0.01 240);
   --al-muted: oklch(0.45 0.01 240);
@@ -12,7 +13,7 @@
   background: var(--al-bg);
   color: var(--al-text);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  padding-bottom: 88px; /* keep content clear of the fixed bottom tab bar (mobile only) */
+  padding-bottom: 104px; /* clear the floating capsule nav + its inset margin (mobile only) */
 }
 
 @media (min-width: 1024px) {
@@ -45,13 +46,32 @@
   outline-offset: 2px;
 }
 
+/* --- Glass material -------------------------------------------------- */
+/* Layered blur + saturate + a bright top edge approximates Liquid Glass's
+ * "light catching the material" — true chromatic-aberration refraction
+ * needs an SVG feDisplacementMap filter, which is heavy on backdrop-filter
+ * compositing and janky on mobile scroll (§11.6.8 perf budget), so this
+ * theme stays with the cheap, honest approximation the material still
+ * reads correctly with. */
 .al-tile {
+  position: relative;
   background: var(--al-glass);
   border: 1px solid oklch(0 0 0 / 0.06);
   border-top: 1px solid var(--al-border);
   border-radius: 20px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 24px oklch(0 0 0 / 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--al-border),
+    0 4px 24px oklch(0 0 0 / 0.05);
+  transition: box-shadow 250ms var(--ease-out), transform 250ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .al-tile:hover {
+    box-shadow:
+      inset 0 1px 0 var(--al-border),
+      0 8px 32px oklch(0 0 0 / 0.08);
+  }
 }
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
@@ -67,24 +87,57 @@
   }
 }
 
+/* --- Floating capsule tab bar ----------------------------------------- */
 .al-tabbar {
   position: fixed;
   left: 50%;
-  bottom: max(16px, env(safe-area-inset-bottom));
+  bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
   transform: translateX(-50%);
   z-index: 40;
-  background: var(--al-glass);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  width: fit-content;
+  background: var(--al-glass-heavy);
   border: 1px solid oklch(0 0 0 / 0.06);
   border-top: 1px solid var(--al-border);
   border-radius: 9999px;
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 24px oklch(0 0 0 / 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--al-border),
+    0 8px 32px oklch(0 0 0 / 0.12);
+}
+
+.al-tab {
+  display: flex;
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--al-muted);
+  transition: background 200ms var(--ease-out), color 200ms var(--ease-out);
+}
+
+@media (hover: hover) {
+  .al-tab:hover {
+    background: oklch(0 0 0 / 0.06);
+    color: var(--al-text);
+  }
+}
+
+.al-tab:focus-visible {
+  outline: 2px solid var(--al-accent);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
   .al-tabbar {
     background: var(--al-bg-solid);
     backdrop-filter: none;
+    border: 1px solid oklch(0 0 0 / 0.2);
   }
 }
 
@@ -94,6 +147,7 @@
   }
 }
 
+/* --- Sidebar: a floating island, never flush with the viewport edge --- */
 .al-sidebar {
   position: sticky;
   top: 24px;
@@ -105,6 +159,101 @@
   color: var(--al-accent);
   border: 1px solid oklch(0 0 0 / 0.06);
   border-top: 1px solid var(--al-border);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 4px 24px oklch(0 0 0 / 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: inset 0 1px 0 var(--al-border), 0 4px 24px oklch(0 0 0 / 0.08);
+}
+
+/* --- Interactive hover lift (springs are overkill for a hover shift;
+ * a short eased transform is the CSS-native equivalent) ---------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .al-nav-link,
+  .al-social {
+    transition: background 200ms var(--ease-out), color 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .al-nav-link:hover,
+  .al-social:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Expands small inline links (repo/live) to a 44px hit area without
+ * disturbing their visual size — the padding is offset by a negative
+ * margin so surrounding layout doesn't shift. */
+.al-hit-target {
+  padding: 10px 4px;
+  margin: -10px -4px;
+  min-height: 44px;
+}
+
+/* --- Project WIP chip --------------------------------------------------- */
+.wip-chip {
+  background: oklch(0.9 0.12 85 / 0.6);
+  color: oklch(0.35 0.1 70);
+  border: 1px solid oklch(1 0 0 / 0.5);
+  backdrop-filter: blur(8px);
+}
+
+/* --- Project media reveal carousel -------------------------------------
+ * Native scroll-snap horizontal carousel — no gesture library needed,
+ * touch scrolling is free and 1:1 by construction on every platform. */
+.al-carousel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: oklch(0.15 0.01 240 / 0.55);
+  backdrop-filter: blur(8px);
+  padding: 24px 0;
+}
+
+.al-carousel {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 calc(50vw - 150px);
+  scrollbar-width: none;
+}
+
+.al-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.al-carousel-card {
+  flex: 0 0 300px;
+  scroll-snap-align: center;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.al-carousel-close {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: max(16px, env(safe-area-inset-right));
+  display: flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--al-glass-heavy);
+  backdrop-filter: blur(20px);
+  color: var(--al-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .al-carousel-backdrop {
+    animation: al-fade-in 200ms var(--ease-out);
+  }
+}
+
+@keyframes al-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

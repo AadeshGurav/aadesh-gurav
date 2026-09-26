@@ -23,7 +23,7 @@ export default function ContactTile({ contact, name }: { contact: ContactInfo; n
                 href={social.href}
                 target={social.href.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="press flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium"
+                className="al-social press flex min-h-11 items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium"
                 style={{ background: "var(--al-accent)", color: "white" }}
               >
                 {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
