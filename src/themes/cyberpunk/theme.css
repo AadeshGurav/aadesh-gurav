@@ -74,11 +74,14 @@
 
 /* Fixed HUD chrome: the corner status readout and the corner nav share
    this panel language, smaller and always-on-top. */
+/* Rendered inside `position: fixed` corners — will-change avoids the
+ * known iOS Safari fixed+backdrop-filter scroll-jank pair (§11.6.8). */
 .cp-hud-panel {
   background: color-mix(in oklch, var(--cp-panel) 88%, transparent);
   border: 1px solid var(--cp-border);
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
   backdrop-filter: blur(6px);
+  will-change: transform;
 }
 
 .cp-hud-btn {

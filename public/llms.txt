@@ -4,18 +4,18 @@
 
 Aadesh works mostly in Python and Rust, with Docker, Kubernetes, and cloud platforms for production deployment. Recent work spans a document database built from scratch in Rust, an autonomous AI operating system that boots as PID 1 on Alpine Linux, and a proof-of-concept that routes data between MongoDB and Neo4j behind a single adapter contract.
 
-This site (aadeshgurav.online) is a personal portfolio with 8 selectable visual themes (Terminal, Glassmorphism Night, Apple Liquid Glass, Flat Minimal, Cyberpunk, Swiss Editorial, Neubrutalist, Bento Dashboard) — the content is identical across themes, only the presentation differs.
+This site ([aadeshgurav.online](https://aadeshgurav.online/)) is a personal portfolio with 8 selectable visual themes (Terminal, Glassmorphism Night, Apple Liquid Glass, Flat Minimal, Cyberpunk, Swiss Editorial, Neubrutalist, Bento Dashboard) — the content is identical across themes, only the presentation differs.
 
 ## Projects
 
-- JARVIS — a bare-metal autonomous AI operating system that boots as PID 1 on Alpine Linux. https://github.com/AadeshGurav/JARVIS
-- NebulaDB — a document database built from scratch in Rust, with a custom storage engine and query layer. https://github.com/AadeshGurav/NebulaDB
-- polystore — a Frappe proof-of-concept that routes each DocType to MongoDB or Neo4j behind one adapter contract. https://github.com/AadeshGurav/polystore
-- OptiFlow — a WhatsApp-integrated appointment and patient management system with real-time people-counting. https://github.com/AadeshGurav/OptiFlow
-- tiffin — a unit-based meal coupon system for a school canteen, piloted on a single campus. https://github.com/AadeshGurav/tiffin
+- [JARVIS](https://github.com/AadeshGurav/JARVIS): a bare-metal autonomous AI operating system that boots as PID 1 on Alpine Linux.
+- [NebulaDB](https://github.com/AadeshGurav/NebulaDB): a document database built from scratch in Rust, with a custom storage engine and query layer.
+- [polystore](https://github.com/AadeshGurav/polystore): a Frappe proof-of-concept that routes each DocType to MongoDB or Neo4j behind one adapter contract.
+- [OptiFlow](https://github.com/AadeshGurav/OptiFlow): a WhatsApp-integrated appointment and patient management system with real-time people-counting.
+- [tiffin](https://github.com/AadeshGurav/tiffin): a unit-based meal coupon system for a school canteen, piloted on a single campus.
 
 ## Contact
 
-- Email: guravaadesh99@gmail.com
-- GitHub: https://github.com/AadeshGurav
-- LinkedIn: https://linkedin.com/in/aadeshgurav
+- [Email](mailto:guravaadesh99@gmail.com)
+- [GitHub](https://github.com/AadeshGurav)
+- [LinkedIn](https://linkedin.com/in/aadeshgurav)

@@ -88,11 +88,15 @@
 }
 
 /* --- Floating capsule tab bar ----------------------------------------- */
+/* position:fixed + backdrop-filter is a known iOS Safari scroll-jank pair
+ * (§11.6.8) — will-change promotes it to its own compositor layer so the
+ * blur isn't recomputed against scroll on every frame. */
 .al-tabbar {
   position: fixed;
   left: 50%;
   bottom: max(20px, calc(env(safe-area-inset-bottom) + 12px));
   transform: translateX(-50%);
+  will-change: transform;
   z-index: 40;
   display: inline-flex;
   align-items: center;
