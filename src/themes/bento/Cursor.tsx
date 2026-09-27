@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 
+const INTERACTIVE =
+  'a, button, [role="button"], summary, input, textarea, select, label, [tabindex]:not([tabindex="-1"])';
+
 /**
  * A small rounded "tile" that trails the pointer, echoing this theme's
  * chunky rounded-block language. Position is written to CSS custom
@@ -8,6 +11,10 @@ import { useEffect, useRef } from "react";
  * no CSS transition on the transform, so it tracks the pointer directly —
  * already instant, so there's no lag to drop under reduced motion.
  * Hidden on touch via the (hover: hover) and (pointer: fine) gate in CSS.
+ *
+ * A delegated mouseover/mouseout pair toggles `.cursor-hover-active` on
+ * <html> over clickable elements, so the tile itself reacts instead of the
+ * native pointer cursor reappearing.
  */
 export default function Cursor() {
   const frame = useRef<number | null>(null);
@@ -23,10 +30,24 @@ export default function Cursor() {
         frame.current = null;
       });
     };
+    const onOver = (event: MouseEvent) => {
+      if (event.target instanceof Element && event.target.closest(INTERACTIVE)) {
+        root.classList.add("cursor-hover-active");
+      }
+    };
+    const onOut = (event: MouseEvent) => {
+      if (event.target instanceof Element && event.target.closest(INTERACTIVE)) {
+        root.classList.remove("cursor-hover-active");
+      }
+    };
 
     document.addEventListener("mousemove", handleMove);
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
     return () => {
       document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
       if (frame.current !== null) cancelAnimationFrame(frame.current);
     };
   }, []);

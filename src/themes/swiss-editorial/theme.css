@@ -73,8 +73,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="swiss-editorial"] {
-    cursor: none;
+  /* Every link/button carries its own `cursor: pointer` that otherwise wins
+     over the root's `cursor: none` by specificity — widen to every element. */
+  [data-theme="swiss-editorial"],
+  [data-theme="swiss-editorial"] * {
+    cursor: none !important;
   }
 
   [data-theme="swiss-editorial"] .se-custom-cursor {
@@ -89,8 +92,14 @@
     border: 1px solid var(--se-accent);
     border-radius: 50%;
     pointer-events: none;
-    transform: translate(var(--cursor-x, -9999px), var(--cursor-y, -9999px));
-    transition: transform 100ms linear;
+    transform: translate(var(--cursor-x, -9999px), var(--cursor-y, -9999px)) scale(1);
+    transition: transform 100ms linear, background 100ms linear;
+  }
+
+  /* Clickable-hover state: quiet fill-in rather than a size jump, matching
+     this theme's restraint. */
+  [data-theme="swiss-editorial"].cursor-hover-active .se-custom-cursor {
+    background: var(--se-accent);
   }
 
   @media (prefers-reduced-motion: reduce) {

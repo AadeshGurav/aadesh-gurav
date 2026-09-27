@@ -213,18 +213,37 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="cyberpunk"] {
-    cursor: none;
+  /* Every link/button/summary carries its own `cursor: pointer` that
+     otherwise wins over the root's `cursor: none` by specificity — widen
+     to every element so it never reappears over anything clickable. */
+  [data-theme="cyberpunk"],
+  [data-theme="cyberpunk"] * {
+    cursor: none !important;
   }
 
   .cp-custom-cursor {
     display: block;
+  }
+
+  /* Clickable-hover state: reticle scales up and glows harder, ghost
+     offset widens for a stronger chromatic-aberration "charged" look. */
+  [data-theme="cyberpunk"].cursor-hover-active .cp-custom-cursor-reticle {
+    transform: translate(var(--cursor-x, -100vw), var(--cursor-y, -100vh)) scale(1.5);
+    box-shadow: 0 0 12px var(--cp-cyan);
+  }
+  [data-theme="cyberpunk"].cursor-hover-active .cp-custom-cursor-ghost {
+    transform: translate(calc(var(--cursor-x, -100vw) + 4px), calc(var(--cursor-y, -100vh) + 4px)) scale(1.5);
+    opacity: 0.85;
+  }
+  [data-theme="cyberpunk"].cursor-hover-active .cp-custom-cursor-trail {
+    opacity: 0.4;
   }
 }
 
 .cp-custom-cursor-reticle {
   border: 1px solid var(--cp-cyan);
   box-shadow: 0 0 6px var(--cp-cyan);
+  transition: transform 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
 }
 
 .cp-custom-cursor-reticle::before,
@@ -256,6 +275,7 @@
   border: 1px solid var(--cp-magenta);
   opacity: 0.65;
   transform: translate(calc(var(--cursor-x, -100vw) + 2px), calc(var(--cursor-y, -100vh) + 2px));
+  transition: transform 140ms var(--ease-out), opacity 140ms var(--ease-out);
 }
 
 .cp-custom-cursor-ghost::before,
@@ -297,5 +317,9 @@
   .cp-custom-cursor-trail {
     transition: none;
     opacity: 0.15;
+  }
+  .cp-custom-cursor-reticle,
+  .cp-custom-cursor-ghost {
+    transition: none;
   }
 }

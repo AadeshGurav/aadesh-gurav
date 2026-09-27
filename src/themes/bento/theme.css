@@ -121,8 +121,12 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="bento"] {
-    cursor: none;
+  /* Every link/button/summary carries its own `cursor: pointer` that
+     otherwise wins over the root's `cursor: none` by specificity — widen
+     to every element so it never reappears over anything clickable. */
+  [data-theme="bento"],
+  [data-theme="bento"] * {
+    cursor: none !important;
   }
 
   [data-theme="bento"] .bt-cursor {
@@ -135,9 +139,21 @@
     border-radius: 6px;
     background: var(--bt-accent);
     box-shadow: 0 4px 10px oklch(0.32 0.12 305 / 0.4);
-    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) scale(1);
     pointer-events: none;
     z-index: 9999;
+    transition: transform 120ms var(--ease-out);
+  }
+
+  /* Clickable-hover state: grows, reading as "ready to act". */
+  [data-theme="bento"].cursor-hover-active .bt-cursor {
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) scale(1.4);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-theme="bento"] .bt-cursor {
+      transition: none;
+    }
   }
 }
 

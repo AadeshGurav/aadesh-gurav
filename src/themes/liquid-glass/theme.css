@@ -290,8 +290,12 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="liquid-glass"] {
-    cursor: none;
+  /* Every link/button/summary carries its own `cursor: pointer` that
+     otherwise wins over the root's `cursor: none` by specificity — widen
+     to every element so it never reappears over anything clickable. */
+  [data-theme="liquid-glass"],
+  [data-theme="liquid-glass"] * {
+    cursor: none !important;
   }
 
   [data-theme="liquid-glass"] .al-custom-cursor {
@@ -311,13 +315,14 @@
     background: oklch(1 0 0 / 0.08);
     pointer-events: none;
     z-index: 9999;
-    transform: translate(var(--cursor-x, 0), var(--cursor-y, 0));
-    transition: transform 120ms var(--ease-out);
+    transform: translate(var(--cursor-x, 0), var(--cursor-y, 0)) scale(1);
+    transition: transform 120ms var(--ease-out), background 120ms var(--ease-out);
   }
 
-  [data-theme="liquid-glass"] a,
-  [data-theme="liquid-glass"] button {
-    cursor: none;
+  /* Clickable-hover state: grows and fills in, reading as "ready to act". */
+  [data-theme="liquid-glass"].cursor-hover-active .al-custom-cursor {
+    background: oklch(1 0 0 / 0.18);
+    transform: translate(var(--cursor-x, 0), var(--cursor-y, 0)) scale(1.4);
   }
 }
 

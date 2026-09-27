@@ -252,12 +252,20 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="glass-night"] {
-    cursor: none;
+  /* Every link/button carries its own `cursor: pointer` that otherwise wins
+     over the root's `cursor: none` by specificity — widen to every element. */
+  [data-theme="glass-night"],
+  [data-theme="glass-night"] * {
+    cursor: none !important;
   }
   .gn-custom-cursor {
     opacity: 0.55;
-    transition: transform 180ms var(--ease-out);
+    transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out), scale 180ms var(--ease-out);
+  }
+  /* Clickable-hover state: brighter and larger, reading as "ready to act". */
+  [data-theme="glass-night"].cursor-hover-active .gn-custom-cursor {
+    opacity: 0.85;
+    scale: 1.5;
   }
 }
 

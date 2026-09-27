@@ -201,8 +201,12 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="neubrutalist"] {
-    cursor: none;
+  /* Every link/button/summary carries its own `cursor: pointer` that
+     otherwise wins over the root's `cursor: none` by specificity — widen
+     to every element so it never reappears over anything clickable. */
+  [data-theme="neubrutalist"],
+  [data-theme="neubrutalist"] * {
+    cursor: none !important;
   }
 
   [data-theme="neubrutalist"] .nb-custom-cursor {
@@ -215,9 +219,24 @@
     background: var(--nb-accent);
     border: 2px solid var(--nb-ink);
     box-shadow: 4px 4px 0 var(--nb-ink);
-    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) scale(1);
     pointer-events: none;
     z-index: 9999;
+    transition: transform 100ms var(--ease-out), box-shadow 100ms var(--ease-out);
+  }
+
+  /* Clickable-hover state: shadow collapses toward the block (same
+     mechanical language as .nb-press/.nb-card hover) and it grows — reads
+     as "about to slam down". */
+  [data-theme="neubrutalist"].cursor-hover-active .nb-custom-cursor {
+    box-shadow: 2px 2px 0 var(--nb-ink);
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) scale(1.25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-theme="neubrutalist"] .nb-custom-cursor {
+      transition: none;
+    }
   }
 }
 

@@ -164,8 +164,13 @@
    touch experience). Always `pointer-events: none` so it can never block
    a click underneath it. */
 @media (hover: hover) and (pointer: fine) {
-  [data-theme="dark-ops"] body {
-    cursor: none;
+  /* Every link/button/summary carries its own `cursor: pointer` (browser
+     default or a Tailwind utility) that otherwise wins over `body`'s
+     `cursor: none` by specificity — widen to every element so the native
+     cursor never reappears over anything clickable. */
+  [data-theme="dark-ops"],
+  [data-theme="dark-ops"] * {
+    cursor: none !important;
   }
 
   [data-theme="dark-ops"] .do-custom-cursor {
@@ -179,11 +184,20 @@
     pointer-events: none;
     transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
     animation: do-cursor-blink 1s step-end infinite;
+    transition: width 120ms var(--ease-out), height 120ms var(--ease-out);
+  }
+
+  /* Clickable-hover state: solid (no blink) and slightly wider, reading as
+     "ready to act" rather than the idle blinking caret. */
+  [data-theme="dark-ops"].cursor-hover-active .do-custom-cursor {
+    width: 16px;
+    animation: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
     [data-theme="dark-ops"] .do-custom-cursor {
       animation: none;
+      transition: none;
     }
   }
 }
