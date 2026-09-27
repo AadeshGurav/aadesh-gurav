@@ -234,6 +234,74 @@
   }
 }
 
+/* ---------- Custom cursor: glowing orb trailing the real pointer ---------- */
+.gn-custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  background: radial-gradient(circle, var(--gn-accent) 0%, transparent 70%);
+  filter: blur(10px);
+  transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="glass-night"] {
+    cursor: none;
+  }
+  .gn-custom-cursor {
+    opacity: 0.55;
+    transition: transform 180ms var(--ease-out);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .gn-custom-cursor {
+    transition: none;
+  }
+}
+
+/* ---------- Long-press ripple (identity element easter egg) ---------- */
+.gn-ripple-host {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.gn-ripple {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, oklch(1 0 0 / 0.5), var(--gn-accent) 55%, transparent 75%);
+  filter: blur(4px);
+  animation: gn-ripple-pulse 650ms var(--ease-out) forwards;
+}
+
+@keyframes gn-ripple-pulse {
+  from { transform: scale(1); opacity: 0.85; }
+  to { transform: scale(14); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gn-ripple {
+    animation: gn-ripple-flash 300ms ease-out forwards;
+    filter: blur(2px);
+  }
+  @keyframes gn-ripple-flash {
+    from { transform: scale(6); opacity: 0.7; }
+    to { transform: scale(6); opacity: 0; }
+  }
+}
+
 [data-theme="glass-night"] .theme-switcher-trigger {
   background: var(--gn-glass);
   color: var(--gn-accent);

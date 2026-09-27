@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import type { Profile } from "@/content";
 import GlassPanel from "./GlassPanel";
 
@@ -8,15 +9,50 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const LONG_PRESS_MS = 600;
+
 /** Identity + nav. One bento cell among many now, not a sticky sidebar. */
 export default function HeroPanel({ profile }: { profile: Profile }) {
+  const hostRef = useRef<HTMLHeadingElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Long-press easter egg on the name: a refraction pulse from the touch
+  // point. A quick tap never fires it — the timeout is cleared on release.
+  const clearPress = () => {
+    clearTimeout(timerRef.current);
+  };
+
+  const onPointerDown = (e: React.PointerEvent<HTMLHeadingElement>) => {
+    const host = hostRef.current;
+    if (!host) return;
+    const rect = host.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    timerRef.current = setTimeout(() => {
+      const ripple = document.createElement("span");
+      ripple.className = "gn-ripple";
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      ripple.addEventListener("animationend", () => ripple.remove());
+      host.appendChild(ripple);
+    }, LONG_PRESS_MS);
+  };
+
   return (
     <div id="home">
       <GlassPanel>
         <p className="mb-3 text-sm font-medium" style={{ color: "var(--gn-accent)" }}>
           Now building
         </p>
-        <h1 className="text-3xl font-semibold leading-tight" style={{ color: "var(--gn-text)" }}>
+        <h1
+          ref={hostRef}
+          className="gn-ripple-host press text-3xl font-semibold leading-tight"
+          style={{ color: "var(--gn-text)" }}
+          onPointerDown={onPointerDown}
+          onPointerUp={clearPress}
+          onPointerCancel={clearPress}
+          onPointerLeave={clearPress}
+        >
           {profile.name}
         </h1>
         <p className="mt-2 text-sm font-medium" style={{ color: "var(--gn-muted)" }}>

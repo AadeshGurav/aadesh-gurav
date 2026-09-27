@@ -1,6 +1,7 @@
 import type { ThemeComponentProps } from "../registry";
 import "./theme.css";
 import AuroraBackdrop from "./AuroraBackdrop";
+import Cursor from "./Cursor";
 import HeroPanel from "./HeroPanel";
 import GlassPanel from "./GlassPanel";
 import WorkPanels from "./WorkPanels";
@@ -14,6 +15,7 @@ export default function GlassNightTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
       <AuroraBackdrop />
+      <Cursor />
       <div className="gn-grid">
         <HeroPanel profile={content.profile} />
         <section id="about">
