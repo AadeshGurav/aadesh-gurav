@@ -193,3 +193,109 @@
     background: var(--cp-panel);
   }
 }
+
+/* Custom reticle cursor: fixed at top-left, moved via transform driven by
+   --cursor-x/--cursor-y (set from JS on mousemove, no React re-render).
+   Reuses the chromatic-aberration cyan/magenta pair from the hover style
+   above — a 1-2px magenta "ghost" ring behind the cyan crosshair. Hidden
+   entirely off fine-pointer/hover-capable devices (mouse/trackpad only). */
+.cp-custom-cursor {
+  display: none;
+  position: fixed;
+  top: -9px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(var(--cursor-x, -100vw), var(--cursor-y, -100vh));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="cyberpunk"] {
+    cursor: none;
+  }
+
+  .cp-custom-cursor {
+    display: block;
+  }
+}
+
+.cp-custom-cursor-reticle {
+  border: 1px solid var(--cp-cyan);
+  box-shadow: 0 0 6px var(--cp-cyan);
+}
+
+.cp-custom-cursor-reticle::before,
+.cp-custom-cursor-reticle::after {
+  content: "";
+  position: absolute;
+  background: var(--cp-cyan);
+}
+
+.cp-custom-cursor-reticle::before {
+  top: 50%;
+  left: -5px;
+  width: 6px;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.cp-custom-cursor-reticle::after {
+  left: 50%;
+  top: -5px;
+  height: 6px;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+/* Chromatic ghost: same crosshair, magenta, offset 2px — static aberration
+   look, no motion of its own beyond tracking the same pointer position. */
+.cp-custom-cursor-ghost {
+  border: 1px solid var(--cp-magenta);
+  opacity: 0.65;
+  transform: translate(calc(var(--cursor-x, -100vw) + 2px), calc(var(--cursor-y, -100vh) + 2px));
+}
+
+.cp-custom-cursor-ghost::before,
+.cp-custom-cursor-ghost::after {
+  content: "";
+  position: absolute;
+  background: var(--cp-magenta);
+}
+
+.cp-custom-cursor-ghost::before {
+  top: 50%;
+  left: -5px;
+  width: 6px;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.cp-custom-cursor-ghost::after {
+  left: 50%;
+  top: -5px;
+  height: 6px;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+/* Trail: a larger, softer duplicate that lags via `transition` on its own
+   transform property — cheap scanline-trail feel without a particle system. */
+.cp-custom-cursor-trail {
+  width: 28px;
+  height: 28px;
+  top: -14px;
+  left: -14px;
+  border: 1px solid var(--cp-cyan);
+  opacity: 0.25;
+  transition: transform 160ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-custom-cursor-trail {
+    transition: none;
+    opacity: 0.15;
+  }
+}

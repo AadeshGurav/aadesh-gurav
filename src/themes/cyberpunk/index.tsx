@@ -1,5 +1,6 @@
 import type { ThemeComponentProps } from "../registry";
 import "./theme.css";
+import Cursor from "./Cursor";
 import Header from "./Header";
 import HudNav from "./HudNav";
 import Hero from "./Hero";
@@ -16,6 +17,7 @@ import ContactPanel from "./ContactPanel";
 export default function CyberpunkTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
+      <Cursor />
       <Header profile={content.profile} />
       <HudNav />
       <div className="mx-auto flex max-w-3xl flex-col gap-8 px-4 pb-40 pt-16 sm:px-6 sm:pt-20 lg:py-16 lg:pb-40 lg:pt-20">
