@@ -169,6 +169,56 @@
   color: var(--fm-accent);
 }
 
+/* --- Page-wide cursor-follow glow (this theme's custom-cursor treatment) ---
+   Position comes from --cursor-x/--cursor-y, written to <html> by
+   CursorGlow.tsx's rAF-throttled document listener. Fixed + low z-index so it
+   sits behind every section's content across the whole page, not just Hero. */
+.fm-cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+  background: radial-gradient(
+    640px circle at var(--cursor-x, 50vw) var(--cursor-y, 50vh),
+    color-mix(in oklch, var(--fm-accent) 10%, transparent),
+    transparent 70%
+  );
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .fm-cursor-glow {
+    display: none;
+  }
+}
+
+/* --- Long-press easter egg on the name in Hero: a quiet wink, not a gimmick --- */
+.fm-egg {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--fm-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fm-egg {
+    animation: fm-egg-in 220ms var(--ease-out);
+  }
+}
+
+@keyframes fm-egg-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* --- Full-width horizontal scroll-snap showcase strip --- */
 .fm-strip {
   display: flex;

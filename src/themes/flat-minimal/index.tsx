@@ -7,6 +7,7 @@ import ProjectList from "./ProjectList";
 import SkillsRow from "./SkillsRow";
 import ContactBlock from "./ContactBlock";
 import Reveal from "./Reveal";
+import CursorGlow from "./CursorGlow";
 
 /**
  * Product-page structure, not a sidebar dashboard: a full-width vertical
@@ -18,6 +19,7 @@ import Reveal from "./Reveal";
 export default function FlatMinimalTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
+      <CursorGlow />
       <Nav name={content.profile.name} />
       <main className="flex flex-col">
         <Hero profile={content.profile} />

@@ -1,66 +1,50 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import type { Profile } from "@/content";
 
 const icons = { github: Github, linkedin: Linkedin, mail: Mail };
 
+const LONG_PRESS_MS = 600;
+const EGG_VISIBLE_MS = 2200;
+
 /**
  * The big typographic moment: profile.tagline set oversized, carrying the
- * page's primary visual interest instead of a panel or a hero image. A
- * cursor-following spotlight adds a subtle accent wash, gated to
- * fine-pointer/hover devices and off under reduced motion.
+ * page's primary visual interest instead of a panel or a hero image. The
+ * cursor-follow glow that used to live here is now page-wide (see
+ * CursorGlow.tsx, rendered once at the theme root) — this section no longer
+ * hosts its own spotlight.
  */
 export default function Hero({ profile }: { profile: Profile }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  const spotRef = useRef<HTMLDivElement>(null);
+  const [showEgg, setShowEgg] = useState(false);
+  const pressTimer = useRef<number>();
+  const hideTimer = useRef<number>();
+
+  const clearPressTimer = () => {
+    window.clearTimeout(pressTimer.current);
+    pressTimer.current = undefined;
+  };
+
+  const startPress = () => {
+    clearPressTimer();
+    pressTimer.current = window.setTimeout(() => {
+      setShowEgg(true);
+      window.clearTimeout(hideTimer.current);
+      hideTimer.current = window.setTimeout(() => setShowEgg(false), EGG_VISIBLE_MS);
+    }, LONG_PRESS_MS);
+  };
 
   useEffect(() => {
-    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!supportsHover || reduced) return;
-    const section = sectionRef.current;
-    const spot = spotRef.current;
-    if (!section || !spot) return;
-
-    let raf = 0;
-    const onMove = (e: MouseEvent) => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const rect = section.getBoundingClientRect();
-        spot.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
-        spot.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
-      });
-    };
-    const onEnter = () => { spot.style.opacity = "1"; };
-    const onLeave = () => { spot.style.opacity = "0"; };
-
-    section.addEventListener("mousemove", onMove);
-    section.addEventListener("mouseenter", onEnter);
-    section.addEventListener("mouseleave", onLeave);
     return () => {
-      section.removeEventListener("mousemove", onMove);
-      section.removeEventListener("mouseenter", onEnter);
-      section.removeEventListener("mouseleave", onLeave);
-      cancelAnimationFrame(raf);
+      clearPressTimer();
+      window.clearTimeout(hideTimer.current);
     };
   }, []);
 
   return (
     <section
       id="home"
-      ref={sectionRef}
       className="relative flex min-h-[85vh] flex-col justify-center overflow-hidden px-4 py-24 sm:px-6 sm:py-32 lg:px-12"
     >
-      <div
-        ref={spotRef}
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300"
-        style={{
-          opacity: 0,
-          background:
-            "radial-gradient(640px circle at var(--spot-x, 50%) var(--spot-y, 50%), color-mix(in oklch, var(--fm-accent) 10%, transparent), transparent 70%)",
-        }}
-      />
       <p className="mb-5 text-sm font-medium uppercase tracking-wide" style={{ color: "var(--fm-accent)" }}>
         {profile.role} · {profile.location}
       </p>
@@ -70,9 +54,21 @@ export default function Hero({ profile }: { profile: Profile }) {
       >
         {profile.tagline}
       </h1>
-      <p className="mt-6 text-base font-medium" style={{ color: "var(--fm-muted)" }}>
+      <p
+        className="press mt-6 w-fit text-base font-medium"
+        style={{ color: "var(--fm-muted)" }}
+        onPointerDown={startPress}
+        onPointerUp={clearPressTimer}
+        onPointerCancel={clearPressTimer}
+        onPointerLeave={clearPressTimer}
+      >
         {profile.name}
       </p>
+      {showEgg && (
+        <p className="fm-egg" aria-live="polite">
+          nice — you found this
+        </p>
+      )}
       <a
         href="#projects"
         className="fm-cta press mt-10 inline-flex w-fit items-center rounded-md px-6 py-3 text-sm font-medium"
