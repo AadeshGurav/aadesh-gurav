@@ -41,7 +41,7 @@ export default function HeroBlock({ profile }: { profile: Profile }) {
         Read this.
       </p>
       <div
-        className={`relative nb-hero-identity ${stamped ? "nb-easter-stamp" : ""}`}
+        className={`relative long-press-target nb-hero-identity ${stamped ? "nb-easter-stamp" : ""}`}
         onPointerDown={startPress}
         onPointerUp={clearPressTimer}
         onPointerCancel={clearPressTimer}

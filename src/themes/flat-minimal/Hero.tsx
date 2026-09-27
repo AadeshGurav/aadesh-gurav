@@ -55,7 +55,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         {profile.tagline}
       </h1>
       <p
-        className="press mt-6 w-fit text-base font-medium"
+        className="press long-press-target mt-6 w-fit text-base font-medium"
         style={{ color: "var(--fm-muted)" }}
         onPointerDown={startPress}
         onPointerUp={clearPressTimer}

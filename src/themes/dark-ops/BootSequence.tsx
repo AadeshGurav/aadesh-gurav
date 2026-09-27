@@ -97,7 +97,7 @@ export default function BootSequence({ profile }: { profile: Profile }) {
         <div className="mt-4 flex flex-col gap-1 text-base">
           <p style={{ color: "var(--do-accent)" }}>$ whoami</p>
           <h1
-            className="press pl-4 text-base font-normal"
+            className="press long-press-target pl-4 text-base font-normal"
             style={{ color: "var(--do-text)" }}
             onPointerDown={startPress}
             onPointerUp={cancelPress}

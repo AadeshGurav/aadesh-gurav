@@ -46,7 +46,7 @@ export default function HeroPanel({ profile }: { profile: Profile }) {
         </p>
         <h1
           ref={hostRef}
-          className="gn-ripple-host press text-3xl font-semibold leading-tight"
+          className="gn-ripple-host press long-press-target text-3xl font-semibold leading-tight"
           style={{ color: "var(--gn-text)" }}
           onPointerDown={onPointerDown}
           onPointerUp={clearPress}

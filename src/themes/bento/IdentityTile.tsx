@@ -53,7 +53,7 @@ export default function IdentityTile({ profile }: { profile: Profile }) {
       </p>
       <div className="relative inline-block">
         <h1
-          className="press mt-2 select-none text-3xl font-extrabold tracking-tight sm:text-5xl"
+          className="press long-press-target mt-2 select-none text-3xl font-extrabold tracking-tight sm:text-5xl"
           onPointerDown={startPress}
           onPointerUp={clearPressTimer}
           onPointerCancel={clearPressTimer}

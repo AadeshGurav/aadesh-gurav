@@ -12,6 +12,19 @@
   transform: scale(0.97);
 }
 
+/* Long-press easter-egg targets: without this, mobile browsers race their
+   own native long-press gesture against our 600ms timer — a text-selection
+   callout (iOS "Copy/Look Up/Share") on plain text, or the full link
+   context menu ("Open/Open in New Tab/Open in Background") if the target
+   happens to be an <a>. -webkit-touch-callout suppresses that iOS popup
+   specifically; user-select stops the selection highlight/magnifier that
+   triggers it on Android too. */
+.long-press-target {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* profile.tagline may contain an embedded \n for an intentional two-line
    break — plain JSX text interpolation renders \n as a space, so every
    theme that prints the tagline directly needs this to honor it. */

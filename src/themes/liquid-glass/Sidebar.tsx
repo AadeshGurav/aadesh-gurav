@@ -56,7 +56,7 @@ export default function Sidebar({ profile }: { profile: Profile }) {
           {profile.role} · {profile.location}
         </p>
         <h1
-          className="press text-3xl font-semibold tracking-tight sm:text-4xl"
+          className="press long-press-target text-3xl font-semibold tracking-tight sm:text-4xl"
           style={{ color: "var(--al-text)" }}
           onPointerDown={onNamePointerDown}
           onPointerUp={clearPressTimer}

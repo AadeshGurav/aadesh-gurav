@@ -48,7 +48,7 @@ export default function Hero({ profile }: { profile: Profile }) {
         {profile.role} // {profile.location}
       </p>
       <div
-        className="press inline-block"
+        className="press long-press-target inline-block"
         onPointerDown={startPress}
         onPointerUp={cancelPress}
         onPointerCancel={cancelPress}

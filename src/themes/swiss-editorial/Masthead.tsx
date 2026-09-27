@@ -35,7 +35,7 @@ export default function Masthead({ name }: { name: string }) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <a
           href="#home"
-          className="press se-link relative inline-block text-3xl font-bold uppercase tracking-tight sm:text-4xl"
+          className="press long-press-target se-link relative inline-block text-3xl font-bold uppercase tracking-tight sm:text-4xl"
           style={{ color: "var(--se-ink)" }}
           onPointerDown={startPress}
           onPointerUp={cancelPress}
