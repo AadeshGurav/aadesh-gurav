@@ -35,7 +35,7 @@ export default function Masthead({ name }: { name: string }) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <a
           href="#home"
-          className="press long-press-target se-link relative inline-block text-3xl font-bold uppercase tracking-tight sm:text-4xl"
+          className="press long-press-target se-link inline-block text-3xl font-bold uppercase tracking-tight sm:text-4xl"
           style={{ color: "var(--se-ink)" }}
           onPointerDown={startPress}
           onPointerUp={cancelPress}
@@ -43,9 +43,6 @@ export default function Masthead({ name }: { name: string }) {
           onPointerLeave={cancelPress}
         >
           {name}
-          <span className={`se-margin-note${showNote ? " is-visible" : ""}`}>
-            ed. note — thanks for reading the fine print.
-          </span>
         </a>
         <nav className="flex gap-4 pt-2 text-xs font-medium uppercase tracking-widest">
           {links.map((link) => (
@@ -55,6 +52,11 @@ export default function Masthead({ name }: { name: string }) {
           ))}
         </nav>
       </div>
+      {showNote && (
+        <p className="se-margin-note is-visible" aria-hidden="true">
+          ed. note — thanks for reading the fine print.
+        </p>
+      )}
       <div className="mt-6 h-px w-full" style={{ background: "var(--se-ink)" }} />
     </header>
   );

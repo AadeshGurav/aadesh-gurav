@@ -5,6 +5,17 @@
    own theme.css once loaded; these rules only need to match that theme's base
    background/foreground closely enough to avoid a visible flash. */
 
+/* Site-wide: no selectable text. This is a deliberate, requested tradeoff
+   (an app-like feel, and it keeps the long-press easter eggs from racing
+   the browser's own text-selection UI) — it means visitors can't
+   copy-paste the email/contact text directly, but every contact method is
+   also a real mailto:/https: link they can tap/click instead. */
+html {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 [data-theme="dark-ops"] body { background: #0a0a0a; color: #d4f7d4; }
 [data-theme="swiss-editorial"] body { background: #f7f6f2; color: #141414; }
 [data-theme="neubrutalist"] body { background: #f7f4ec; color: #15130f; }

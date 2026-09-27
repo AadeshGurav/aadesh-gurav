@@ -100,32 +100,34 @@
   }
 }
 
-/* Long-press easter egg: a quiet marginalia note, editorial-footnote style. */
+/* Long-press easter egg: a quiet marginalia note, editorial-footnote style.
+   Normal document flow, not an absolute overlay — an absolutely-positioned
+   reveal a few px below the name overlapped it illegibly on real Safari
+   (font-metric differences from headless testing closed the gap). Flowing
+   it in as its own line is immune to that class of bug entirely. */
 [data-theme="swiss-editorial"] .se-margin-note {
-  position: absolute;
-  left: 0;
-  top: 100%;
   margin-top: 0.5rem;
-  white-space: nowrap;
   font-size: 0.75rem;
   font-style: italic;
   color: var(--se-muted);
   border-top: 1px solid var(--se-hairline);
   padding-top: 0.375rem;
-  opacity: 0;
-  transform: translateY(-2px);
-  transition:
-    opacity 300ms var(--ease-out),
-    transform 300ms var(--ease-out);
 }
 
-[data-theme="swiss-editorial"] .se-margin-note.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-theme="swiss-editorial"] .se-margin-note {
-    transition: none;
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="swiss-editorial"] .se-margin-note.is-visible {
+    animation: se-note-in 300ms var(--ease-out);
   }
 }
+
+@keyframes se-note-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

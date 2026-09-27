@@ -51,22 +51,20 @@ export default function IdentityTile({ profile }: { profile: Profile }) {
       <p className="text-sm font-semibold" style={{ color: "oklch(0.88 0.06 305)" }}>
         {profile.role} · {profile.location}
       </p>
-      <div className="relative inline-block">
-        <h1
-          className="press long-press-target mt-2 select-none text-3xl font-extrabold tracking-tight sm:text-5xl"
-          onPointerDown={startPress}
-          onPointerUp={clearPressTimer}
-          onPointerCancel={clearPressTimer}
-          onPointerLeave={clearPressTimer}
-        >
-          {profile.name}
-        </h1>
-        {revealed && (
-          <span className="bt-secret" aria-hidden="true">
-            Nice find — that&rsquo;s the last compartment in this box.
-          </span>
-        )}
-      </div>
+      <h1
+        className="press long-press-target mt-2 select-none text-3xl font-extrabold tracking-tight sm:text-5xl"
+        onPointerDown={startPress}
+        onPointerUp={clearPressTimer}
+        onPointerCancel={clearPressTimer}
+        onPointerLeave={clearPressTimer}
+      >
+        {profile.name}
+      </h1>
+      {revealed && (
+        <p className="bt-secret" aria-hidden="true">
+          Nice find — that&rsquo;s the last compartment in this box.
+        </p>
+      )}
       <p className="multiline mt-4 max-w-md text-base leading-relaxed" style={{ color: "oklch(0.92 0.02 305)" }}>
         {profile.tagline}
       </p>

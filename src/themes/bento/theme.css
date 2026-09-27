@@ -144,15 +144,14 @@
 /* Mobile long-press easter egg on the identity tile's name: a small
    bento-chip "secret compartment" pops open beneath it. The pop animation
    is decorative; the message itself renders either way. */
+/* Normal document flow, not an absolute overlay — an absolutely-positioned
+   reveal sitting a few px below the name overlapped it illegibly on real
+   Safari (font-metric differences from headless testing closed the gap).
+   Flowing it in as its own line is immune to that class of bug entirely. */
 [data-theme="bento"] .bt-secret {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  z-index: 1;
-  margin-top: 0.5rem;
   display: inline-block;
-  max-width: 240px;
-  white-space: normal;
+  margin-top: 0.5rem;
+  max-width: 320px;
   border-radius: 10px;
   padding: 0.375rem 0.75rem;
   background: oklch(1 0 0 / 0.16);
