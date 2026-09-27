@@ -3,28 +3,34 @@ import Terminal from "./Terminal";
 import type { Project } from "@/content/types";
 import {
   STATIC_COMMANDS,
-  catProjectMedia,
+  THEME_USAGE,
   cowsay,
+  flip,
   fortune,
+  joke,
   listProjects,
   notFoundMessage,
   pingLines,
   resumeText,
+  roll,
+  sl,
   themeCommand,
 } from "./commands";
 
 type Line = { type: "input" | "output"; text: string };
 
-const HELP_TEXT =
-  "Available: help, whoami, about, ls, cat resume.txt, cat <project>.mp4, projects, date, history, theme <id>, matrix, fortune, cowsay <text>, ping <host>, coffee, sudo, hire me, 42, clear";
+const HELP_TEXT = [
+  "commands:",
+  "  help, ls, projects, cat resume.txt",
+  "  date, history, clear",
+  "  theme <id>   (bare 'theme' lists options)",
+  "  matrix, fortune, joke, cowsay <text>",
+  "  roll, flip, ping <host>",
+  "  coffee, sudo, hire me, 42, exit",
+  "a few more aren't listed. try your luck.",
+].join("\n");
 
-export default function LiveTerminal({
-  projects,
-  bio,
-}: {
-  projects: Project[];
-  bio: string[];
-}) {
+export default function LiveTerminal({ projects }: { projects: Project[] }) {
   const [history, setHistory] = useState<Line[]>([
     { type: "output", text: "Type 'help' to see what this does." },
   ]);
@@ -47,12 +53,17 @@ export default function LiveTerminal({
     const lower = cmd.toLowerCase();
 
     if (lower === "help") return HELP_TEXT;
+    if (lower === "help theme" || lower === "theme") return THEME_USAGE;
     if (lower === "ls" || lower === "ls projects" || lower === "ls ./projects") return listProjects(projects);
-    if (lower === "cat resume.txt") return resumeText(bio);
+    if (lower === "cat resume.txt") return resumeText();
     if (lower === "projects") return `${listProjects(projects)}\n(or scroll up to ./projects)`;
     if (lower === "date") return new Date().toString();
     if (lower === "history") return history.filter((l) => l.type === "input").map((l) => l.text).join("\n") || "(empty)";
     if (lower === "fortune") return fortune();
+    if (lower === "joke") return joke();
+    if (lower === "flip" || lower === "coin") return flip();
+    if (lower === "roll" || lower === "dice") return roll();
+    if (lower === "sl") return sl();
     if (lower === "matrix") {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduced) return "matrix mode skipped — you have reduced motion enabled, and that's respected here.";
@@ -63,8 +74,6 @@ export default function LiveTerminal({
     if (lower.startsWith("ping ")) return pingLines(cmd.slice(5).trim()).join("\n");
     if (lower.startsWith("ping")) return pingLines("localhost").join("\n");
     if (lower.startsWith("theme ")) return themeCommand(lower);
-    const media = catProjectMedia(lower, projects);
-    if (media) return media;
 
     return STATIC_COMMANDS[lower] ?? notFoundMessage(cmd);
   }

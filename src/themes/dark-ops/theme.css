@@ -137,7 +137,7 @@
 
 [data-theme="dark-ops"] .do-matrix-column {
   position: absolute;
-  top: -100%;
+  top: -40vh;
   white-space: pre;
   font-size: 0.875rem;
   line-height: 1.4;
@@ -146,9 +146,14 @@
   animation: do-matrix-fall 1.8s linear infinite;
 }
 
+/* vh, not %: a percentage translateY is relative to the element's OWN
+   height, not the viewport — with only ~18 short lines of content that
+   fell nowhere near the bottom of the screen before reaching 200%. vh
+   units guarantee it actually crosses the full viewport regardless of
+   how tall the column's own content is. */
 @keyframes do-matrix-fall {
   from { transform: translateY(0); }
-  to { transform: translateY(200%); }
+  to { transform: translateY(140vh); }
 }
 
 @media (prefers-reduced-motion: reduce) {

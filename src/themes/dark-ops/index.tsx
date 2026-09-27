@@ -18,7 +18,7 @@ export default function DarkOpsTheme({ content }: ThemeComponentProps) {
       <StatusBar />
       <div className="mx-auto flex max-w-3xl flex-col gap-2 lg:px-6 lg:py-12">
         <BootSequence profile={content.profile} />
-        <LiveTerminal projects={content.projects} bio={content.profile.bio} />
+        <LiveTerminal projects={content.projects} />
         <Terminal id="about" title="About">
           <div className="flex flex-col gap-3 text-sm">
             {content.profile.bio.map((paragraph, i) => (

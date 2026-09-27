@@ -12,6 +12,16 @@ export const STATIC_COMMANDS: Record<string, string> = {
   "hire me": "Bold move, and I respect it. Scroll to Contact — let's talk.",
   "42": "The answer to life, the universe, and this portfolio.",
   exit: "There is no escape. (Just close the tab, it's fine.)",
+  vim: "You are now trapped in vim. Try ':q' — spoiler: it won't work either.",
+  ":q": "This isn't vim. Points for reflexes though.",
+  ":wq": "Saved and quit. (Nothing was saved. This isn't vim.)",
+  "git blame": "It was you. It's always you.",
+  "git push --force": "Force-pushed to main. Bold. Reckless. Respected. (Nothing was actually pushed.)",
+  "rm -rf node_modules": "Deleting node_modules... freed 40GB and several years of your life.",
+  "rm -rf /": "Absolutely not. Nice try though.",
+  hack: "ACCESS GRANTED. (To absolutely nothing, but doesn't that feel good.)",
+  uptime: "Up since before you got here. Down whenever Render feels like it.",
+  banana: "🍌",
 };
 
 const FORTUNES = [
@@ -22,6 +32,15 @@ const FORTUNES = [
   "The best code is no code at all.",
   "Weeks of coding can save you hours of planning.",
   "There is no cloud, just someone else's terminal.",
+];
+
+const JOKES = [
+  "Why do programmers prefer dark mode? Light attracts bugs.",
+  "I'd tell you a UDP joke, but you might not get it.",
+  "There are 10 kinds of people: those who understand binary, and those who don't.",
+  "Told my wife to buy bread, and if they had eggs, get a dozen. She came back with 12 loaves.",
+  "Why did the developer go broke? He used up all his cache.",
+  "A byte walks into a bar looking miserable. The bartender asks what's wrong. It says, 'parity error.'",
 ];
 
 const NOT_FOUND_MESSAGES = [
@@ -39,6 +58,22 @@ export function notFoundMessage(cmd: string): string {
 
 export function fortune(): string {
   return FORTUNES[Math.floor(Math.random() * FORTUNES.length)];
+}
+
+export function joke(): string {
+  return JOKES[Math.floor(Math.random() * JOKES.length)];
+}
+
+export function flip(): string {
+  return Math.random() < 0.5 ? "heads." : "tails.";
+}
+
+export function roll(): string {
+  return `🎲 ${1 + Math.floor(Math.random() * 6)}`;
+}
+
+export function sl(): string {
+  return ["    🚂💨    ", "you meant 'ls', friend. here's a train instead."].join("\n");
 }
 
 export function cowsay(text: string): string {
@@ -65,23 +100,25 @@ export function listProjects(projects: Project[]): string {
     .join("\n");
 }
 
-export function resumeText(bio: string[]): string {
-  return bio.map((line) => `  ${line}`).join("\n");
+/** A joke, not a résumé dump — nobody wants to read six paragraphs in a
+ * terminal window. */
+export function resumeText(): string {
+  return [
+    "NAME:    Aadesh Gurav",
+    "ROLE:    turns coffee into backend systems",
+    "SKILLS:  Python, Rust, staying calm during 2am incidents",
+    "WEAKNESS: cannot resist over-engineering a good README",
+    "STATUS:  probably shipping something right now",
+  ].join("\n");
 }
 
-export function catProjectMedia(cmd: string, projects: Project[]): string | null {
-  const match = cmd.match(/^cat\s+([a-z0-9-]+)\.mp4$/i);
-  if (!match) return null;
-  const project = projects.find((p) => p.id === match[1]);
-  if (!project) return `cat: ${match[1]}.mp4: No such file or directory`;
-  return `[decoding ${project.id}.mp4 ...]\n${project.name} — ${project.description}`;
-}
+export const THEME_USAGE = `usage: theme <${themes.map((t) => t.id).join("|")}>`;
 
 /** Sets the theme and reloads — a terminal command can't reach the ThemeLoader's
  * own React state, so a full reload (cheap, code-split, cached) is the reliable path. */
 export function themeCommand(cmd: string): string {
   const match = cmd.match(/^theme\s+([a-z-]+)$/i);
-  if (!match) return `usage: theme <${themes.map((t) => t.id).join("|")}>`;
+  if (!match) return THEME_USAGE;
   const id = match[1] as ThemeId;
   if (!themes.some((t) => t.id === id)) {
     return `unknown theme '${id}' — try: ${themes.map((t) => t.id).join(", ")}`;
