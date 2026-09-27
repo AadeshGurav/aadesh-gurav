@@ -156,3 +156,46 @@
     display: none;
   }
 }
+
+/* Custom terminal-caret cursor — desktop/mouse only. On touch devices the
+   native cursor stays and this element never renders meaningfully (the
+   translate falls back to an off-screen default, but the rule scoping it
+   to `hover: hover and pointer: fine` is what actually keeps it out of the
+   touch experience). Always `pointer-events: none` so it can never block
+   a click underneath it. */
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="dark-ops"] body {
+    cursor: none;
+  }
+
+  [data-theme="dark-ops"] .do-custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 10px;
+    height: 18px;
+    background: var(--do-accent);
+    pointer-events: none;
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+    animation: do-cursor-blink 1s step-end infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-theme="dark-ops"] .do-custom-cursor {
+      animation: none;
+    }
+  }
+}
+
+/* Easter-egg reveal from the BootSequence long-press — same reveal motion
+   as a boot line, so it's fully skipped under reduced motion too. */
+[data-theme="dark-ops"] .do-egg-reveal {
+  animation: do-boot-line-in 200ms var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="dark-ops"] .do-egg-reveal {
+    animation: none;
+  }
+}

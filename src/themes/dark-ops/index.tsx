@@ -7,12 +7,14 @@ import ProjectLog from "./ProjectLog";
 import SkillsDump from "./SkillsDump";
 import ContactPrompt from "./ContactPrompt";
 import LiveTerminal from "./LiveTerminal";
+import Cursor from "./Cursor";
 
 /** Single-column system-log flow: boot sequence, then the live terminal
  * above the fold, then sequential log entries — no sidebar/grid skeleton. */
 export default function DarkOpsTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
+      <Cursor />
       <StatusBar />
       <div className="mx-auto flex max-w-3xl flex-col gap-2 lg:px-6 lg:py-12">
         <BootSequence profile={content.profile} />
