@@ -192,3 +192,77 @@
     transform: translate(4px, 4px);
   }
 }
+
+/* Custom cursor — a small solid square with the same hard offset-shadow as
+   .nb-card, replacing the native pointer. Fine-pointer/hover only, so touch
+   is completely unaffected (the element stays display:none there). */
+[data-theme="neubrutalist"] .nb-custom-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="neubrutalist"] {
+    cursor: none;
+  }
+
+  [data-theme="neubrutalist"] .nb-custom-cursor {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--nb-accent);
+    border: 2px solid var(--nb-ink);
+    box-shadow: 4px 4px 0 var(--nb-ink);
+    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px));
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+/* Mobile long-press easter egg on the hero identity block — a one-shot,
+   exaggerated version of the .nb-press shadow-collapse: the offset shadow
+   slams toward the headline and the headline snaps a couple degrees, then
+   both settle back. Color/border change survives reduced motion; the
+   slam/rotation animation does not. */
+[data-theme="neubrutalist"] .nb-hero-identity.nb-easter-stamp h1 {
+  background: var(--nb-accent) !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="neubrutalist"] .nb-hero-identity.nb-easter-stamp .nb-hero-shadow {
+    animation: nb-easter-collapse 500ms var(--ease-out);
+  }
+
+  [data-theme="neubrutalist"] .nb-hero-identity.nb-easter-stamp h1 {
+    animation: nb-easter-rotate 500ms var(--ease-out);
+  }
+}
+
+@keyframes nb-easter-collapse {
+  0% { transform: translate(0, 0); }
+  30% { transform: translate(-10px, -12px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes nb-easter-rotate {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+[data-theme="neubrutalist"] .nb-easter-badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 0.5rem;
+  z-index: 2;
+  border: 2px solid var(--nb-ink);
+  background: var(--nb-ink);
+  color: var(--nb-bg);
+  padding: 0.125rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

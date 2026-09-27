@@ -5,10 +5,12 @@ import HeroBlock from "./HeroBlock";
 import WorkGrid from "./WorkGrid";
 import SkillStamps from "./SkillStamps";
 import ContactBlock from "./ContactBlock";
+import Cursor from "./Cursor";
 
 export default function NeubrutalistTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
+      <Cursor />
       <Header name={content.profile.name} />
       <HeroBlock profile={content.profile} />
       <section id="about" className="mx-auto max-w-6xl px-4 py-12 sm:px-8">
