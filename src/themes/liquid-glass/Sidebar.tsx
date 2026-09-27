@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Github, Linkedin, Mail } from "lucide-react";
 import type { Profile } from "@/content";
 import MaterializePanel from "./MaterializePanel";
@@ -10,6 +11,22 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
+const LONG_PRESS_MS = 600;
+
+/** Spawns a one-off refraction pulse at (x, y) and removes it once its
+ * CSS animation finishes — no React state, so a long-press never re-renders. */
+function spawnPressPulse(x: number, y: number) {
+  const pulse = document.createElement("div");
+  pulse.className = "al-press-pulse";
+  pulse.style.left = `${x}px`;
+  pulse.style.top = `${y}px`;
+  document.body.appendChild(pulse);
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  pulse.addEventListener("animationend", () => pulse.remove(), { once: true });
+  // Belt-and-suspenders removal in case animationend doesn't fire.
+  setTimeout(() => pulse.remove(), reduced ? 300 : 700);
+}
+
 /**
  * Identity + nav. A normal block at the top of the page on mobile (acts as
  * the hero); becomes a sticky left column at lg+ so the wide viewport gets a
@@ -17,13 +34,35 @@ const links = [
  * both sides.
  */
 export default function Sidebar({ profile }: { profile: Profile }) {
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearPressTimer = () => {
+    if (pressTimer.current !== null) {
+      clearTimeout(pressTimer.current);
+      pressTimer.current = null;
+    }
+  };
+
+  const onNamePointerDown = (e: React.PointerEvent<HTMLHeadingElement>) => {
+    const { clientX, clientY } = e;
+    clearPressTimer();
+    pressTimer.current = setTimeout(() => spawnPressPulse(clientX, clientY), LONG_PRESS_MS);
+  };
+
   return (
     <div id="home" className="al-sidebar px-4 pt-12 sm:px-6 sm:pt-16 lg:px-0 lg:pt-20">
       <MaterializePanel immediate>
         <p className="mb-2 text-sm font-medium" style={{ color: "var(--al-accent)" }}>
           {profile.role} · {profile.location}
         </p>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl" style={{ color: "var(--al-text)" }}>
+        <h1
+          className="press text-3xl font-semibold tracking-tight sm:text-4xl"
+          style={{ color: "var(--al-text)" }}
+          onPointerDown={onNamePointerDown}
+          onPointerUp={clearPressTimer}
+          onPointerCancel={clearPressTimer}
+          onPointerLeave={clearPressTimer}
+        >
           {profile.name}
         </h1>
         <p className="multiline mt-4 text-base leading-relaxed" style={{ color: "var(--al-muted)" }}>

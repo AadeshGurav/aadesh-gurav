@@ -7,10 +7,12 @@ import MaterializePanel from "./MaterializePanel";
 import WorkGrid from "./WorkGrid";
 import SkillsChips from "./SkillsChips";
 import ContactTile from "./ContactTile";
+import Cursor from "./Cursor";
 
 export default function LiquidGlassTheme({ content }: ThemeComponentProps) {
   return (
     <div className="min-h-screen">
+      <Cursor />
       <AmbientBackdrop />
       <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[280px_1fr] lg:gap-12 lg:px-6 lg:py-16">
         <Sidebar profile={content.profile} />

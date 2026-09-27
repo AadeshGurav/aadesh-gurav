@@ -280,3 +280,86 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* --- Custom cursor: a small glass ring, same material as .al-tabbar -----
+ * Position comes from --cursor-x/--cursor-y (set in Cursor.tsx on rAF-
+ * throttled mousemove, no React re-renders). pointer-events: none is load-
+ * bearing — without it the ring would eat every click underneath it. */
+[data-theme="liquid-glass"] .al-custom-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="liquid-glass"] {
+    cursor: none;
+  }
+
+  [data-theme="liquid-glass"] .al-custom-cursor {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    border-radius: 9999px;
+    border: 1.5px solid oklch(1 0 0 / 0.7);
+    box-shadow:
+      inset 0 1px 0 var(--al-border),
+      0 2px 12px oklch(0 0 0 / 0.1);
+    backdrop-filter: blur(6px) saturate(180%);
+    background: oklch(1 0 0 / 0.08);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(var(--cursor-x, 0), var(--cursor-y, 0));
+    transition: transform 120ms var(--ease-out);
+  }
+
+  [data-theme="liquid-glass"] a,
+  [data-theme="liquid-glass"] button {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="liquid-glass"] .al-custom-cursor {
+    transition: none;
+  }
+}
+
+/* --- Long-press refraction pulse (Sidebar identity easter egg) ---------- */
+.al-press-pulse {
+  position: fixed;
+  z-index: 60;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--al-glass-heavy), transparent 70%);
+  border: 1px solid var(--al-accent);
+  box-shadow: inset 0 1px 0 var(--al-border), 0 0 24px oklch(0.42 0.18 250 / 0.35);
+  backdrop-filter: blur(4px);
+  animation: al-pulse-expand 550ms var(--ease-out) forwards;
+}
+
+@keyframes al-pulse-expand {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(9);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .al-press-pulse {
+    animation: al-pulse-flash 200ms ease-out forwards;
+  }
+  @keyframes al-pulse-flash {
+    from { opacity: 0.9; }
+    to { opacity: 0; }
+  }
+}
